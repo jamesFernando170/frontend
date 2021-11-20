@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  session: boolean = false; //Variable que nos servira para ocultar el login o el logout, dependiendo del caso
+  
 
   constructor() { }
 
