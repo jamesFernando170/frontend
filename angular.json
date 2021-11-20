@@ -35,7 +35,8 @@
             ],
             "scripts": [
               "node_modules/materialize-css/dist/js/materialize.min.js",
-              "src/assets/js/init-materalize.js"
+              "src/assets/js/init-materalize.js",
+              "src/assets/js/function.js"
             ]
           },
           "configurations": {

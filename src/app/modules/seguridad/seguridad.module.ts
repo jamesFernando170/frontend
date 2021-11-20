@@ -10,6 +10,7 @@ import { CrearUsuarioComponent } from './user/crear-usuario/crear-usuario.compon
 import { EditarUsuarioComponent } from './user/editar-usuario/editar-usuario.component';
 import { ListarUsuarioComponent } from './user/listar-usuario/listar-usuario.component';
 import { EliminarUsuarioComponent } from './user/eliminar-usuario/eliminar-usuario.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,7 +26,9 @@ import { EliminarUsuarioComponent } from './user/eliminar-usuario/eliminar-usuar
   ],
   imports: [
     CommonModule,
-    SeguridadRoutingModule
+    SeguridadRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class SeguridadModule { }
