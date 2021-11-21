@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { generalData } from 'src/app/config/general-data';
 import { userCredentialsModel } from 'src/app/models/credenciales-usuario.model';
-import {MD5} from 'crypto-js';
+import { MD5 } from 'crypto-js';
+import { SecurityService } from 'src/app/services/security.service';
 
 declare const openGeneralMessageModal: any;
 
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   form: FormGroup = new FormGroup({});
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private securityServices: SecurityService
   ) { }
 
   ngOnInit(): void {
@@ -35,11 +37,18 @@ export class LoginComponent implements OnInit {
       openGeneralMessageModal(generalData.INVALID_FORM_MESSAGE)
     } else {
       openGeneralMessageModal(generalData.VALID_FORM_MESSAGE)
-      let modelo = new userCredentialsModel();
+      let modelo = new userCredentialsModel(); // Modelo donde podremos utilizar para cojer la informacion que viene desde el login
       modelo.username = this.GetForm['username'].value;
       modelo.password = MD5(this.GetForm['password'].value).toString();
-      console.log(modelo.username, "-", modelo.password);
-      
+      this.securityServices.Login(modelo).subscribe({
+        next: (data: any) => {
+          console.log(data);
+
+        },
+        error: (error: any) => {
+          openGeneralMessageModal(generalData.GENERAL_ERROR_MESSAGE)
+        }
+      }); // Datos que se le enviaran desde el frontend hacia el backend, el usuario y la contraseña
     }
   }
 
