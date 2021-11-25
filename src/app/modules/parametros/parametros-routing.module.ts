@@ -77,10 +77,10 @@ const routes: Routes = [
     component: CrearGfacultadComponent
   },
   {
-    path: "editar-facultad",
+    path: "editar-facultad/:id",
     component: EditarFacultadComponent
   }, {
-    path: "eliminar-gfacultad",
+    path: "eliminar-facultad/:id",
     component: EliminarFacultadComponent
   },
   {
