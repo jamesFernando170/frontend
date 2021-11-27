@@ -12,6 +12,7 @@ export class ProponenteService {
 
   url: string = generalData.BUSSINES_URL;
   token: string = "";
+  //filter: string = `?filter={"include":[{"relation":"TipoVinculacion"}]}`;
   constructor(
     private http: HttpClient,
     private localStorageService: LocalStorageService

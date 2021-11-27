@@ -36,6 +36,10 @@ import { ListarJuradoComponent } from './Jurado/listar-jurado/listar-jurado.comp
 import { EliminarJuradoComponent } from './Jurado/eliminar-jurado/eliminar-jurado.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CrearProponenteComponent } from './proponente/crear-proponente/crear-proponente.component';
+import { EditarProponenteComponent } from './proponente/editar-proponente/editar-proponente.component';
+import { ListarProponenteComponent } from './proponente/listar-proponente/listar-proponente.component';
+import { EliminarProponenteComponent } from './proponente/eliminar-proponente/eliminar-proponente.component';
 
 
 @NgModule({
@@ -71,7 +75,11 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CrearJuradoComponent,
     EditarJuradoComponent,
     ListarJuradoComponent,
-    EliminarJuradoComponent
+    EliminarJuradoComponent,
+    CrearProponenteComponent,
+    EditarProponenteComponent,
+    ListarProponenteComponent,
+    EliminarProponenteComponent
   ],
   imports: [
     CommonModule,

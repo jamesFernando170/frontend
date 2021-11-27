@@ -30,6 +30,8 @@ export class CrearDepartamentoComponent implements OnInit {
   ngOnInit(): void {
     this.createForm();
     this.GetOptionsToSelects();
+    console.log(this.facultadList);
+    
   }
 
 
@@ -38,6 +40,8 @@ export class CrearDepartamentoComponent implements OnInit {
       {
         next: (data: FacultadModel[]) => {
           this.facultadList = data;
+          console.log(this.facultadList);
+          
           setTimeout(() => {
             InitSelectById("selFacultad");
           }, 100);

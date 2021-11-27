@@ -4,5 +4,5 @@ export class DepartamentoModel {
     id?: number;
     nombre?: string;
     idFacultad?: number;
-    facultad?: FacultadModel;
+    d_pertenece_f?: FacultadModel;
 }
