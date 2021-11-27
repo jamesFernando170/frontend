@@ -52,7 +52,7 @@ export class EditarFacultadComponent implements OnInit {
     this.service.EditRecord(model).subscribe({
       next: (data: FacultadModel) =>{
         openGeneralMessageModal(generalData.SAVED_MESSAGE);
-        this.router.navigate(["/parametros/listar-facultad"]);
+        this.router.navigate(["/parametros/editar-facultad"]);
       },
       error: (err: any) => {
         openGeneralMessageModal(generalData.ERROR_MESSAGE);

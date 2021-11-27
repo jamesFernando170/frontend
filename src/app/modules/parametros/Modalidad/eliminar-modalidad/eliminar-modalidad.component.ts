@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { generalData } from 'src/app/config/general-data';
+import { ModalidadModel } from 'src/app/models/parametros/modalidad.model';
+import { FacultadService } from 'src/app/services/parametros/facultad.service';
+
+declare const openGeneralMessageModal: any;
 
 @Component({
   selector: 'app-eliminar-modalidad',
@@ -7,9 +13,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EliminarModalidadComponent implements OnInit {
 
-  constructor() { }
+  id: number = 0;
+  nombre: string = "";
+
+  constructor(
+    private router: Router,
+    private service: FacultadService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.SearchRecord();
+  }
+
+  SearchRecord(){
+    let id = parseInt(this.route.snapshot.params["id"]);
+    this.service.SearchRecord(id).subscribe({
+      next: (data: ModalidadModel) => {
+        if(data.id && data.nombre){
+          this.id = data.id;
+          this.nombre = data.nombre;
+        }
+        
+      }
+    });
+  }
+
+  RemoveRecord(){
+    this.service.RemoveRecord(this.id).subscribe({
+      next: (data: ModalidadModel) =>{
+        openGeneralMessageModal(generalData.REMOVE_MESSAGE);
+        this.router.navigate(["/parametros/listar-facultad"]);
+      },
+      error: (err: any) => {
+        openGeneralMessageModal(generalData.ERROR_MESSAGE);
+      }
+    });
   }
 
 }

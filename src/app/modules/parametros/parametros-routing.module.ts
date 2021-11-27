@@ -19,6 +19,7 @@ import { ListarJuradoComponent } from './Jurado/listar-jurado/listar-jurado.comp
 import { CrearModalidadComponent } from './Modalidad/crear-modalidad/crear-modalidad.component';
 import { EditarModalidadComponent } from './Modalidad/editar-modalidad/editar-modalidad.component';
 import { EliminarModalidadComponent } from './Modalidad/eliminar-modalidad/eliminar-modalidad.component';
+import { ListarModalidadComponent } from './Modalidad/listar-modalidad/listar-modalidad.component';
 import { CrearProponenteComponent } from './proponente/crear-proponente/crear-proponente.component';
 import { EditarProponenteComponent } from './proponente/editar-proponente/editar-proponente.component';
 import { EliminarProponenteComponent } from './proponente/eliminar-proponente/eliminar-proponente.component';
@@ -45,6 +46,13 @@ const routes: Routes = [
   {
     path: "editar-area-investigacion",
     component: EditarAreaInvestigacionComponent
+  },
+  {
+    path: "editar-area-investigacion/:id",
+    component: EditarAreaInvestigacionComponent
+  }, {
+    path: "eliminar-area-investigacion/:id",
+    component: EliminarAreaInvestigacionComponent
   },
   {
     path: "eliminar-area-investigacion",
@@ -119,7 +127,7 @@ const routes: Routes = [
   },
   {
     path: "listar-modalidad",
-    component: EditarModalidadComponent
+    component: ListarModalidadComponent
   },
   /**Proponente */
   {
