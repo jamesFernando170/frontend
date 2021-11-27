@@ -28,14 +28,12 @@ export class CrearGfacultadComponent implements OnInit {
 
   createForm() {
     this.form = this.fb.group({
-      id: ["", [Validators.required]],
       nombre: ["", [Validators.required]]
     });
   }
 
   SaveRecord(){
     let model = new FacultadModel();
-    model.id = this.GetForm['id'].value;
     model.nombre = this.GetForm['nombre'].value;
     this.service.SaveRecord(model).subscribe({
       next: (data: FacultadModel) =>{
