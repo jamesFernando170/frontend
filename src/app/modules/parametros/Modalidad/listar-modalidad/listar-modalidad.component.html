@@ -1,1 +1,35 @@
-<p>listar-modalidad works!</p>
+<br />
+<a routerLink="/parametros/crear-modalidad" class="btn btn-success">Nuevo Registro</a>
+<table class="table responsive-table">
+    <thead>
+        <th>
+            Id
+        </th>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Acciones
+        </th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let m of recordList  | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }">
+            <td>
+                {{m.id}}
+            </td>
+            <td>
+                {{m.nombre}}
+            </td>
+            <td>
+                <a routerLink="/parametros/crear-modalidad/{{m.id}}" class="btn btn-warning orange">Editar</a>
+                &nbsp;<a routerLink="/parametros/eliminar-modalidad/{{m.id}}" class="btn btn-warning red">Eliminar</a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente">
+                </pagination-controls>
+            </td>
+        </tr>
+    </tbody>
+</table>

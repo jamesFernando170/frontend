@@ -10,4 +10,5 @@ export namespace generalData{
     export const ERROR_MESSAGE = "Error en el backend";
     export const GENERAL_ERROR_MESSAGE = "Error al conectarse con el backend";
     export const RECORDS_BY_PAGE = 3;
+    export const RECORDS_BY_PAGE2 = 3;
 }

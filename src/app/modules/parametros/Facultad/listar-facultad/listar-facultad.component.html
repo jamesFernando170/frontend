@@ -13,7 +13,7 @@
         </th>
     </thead>
     <tbody>
-        <tr *ngFor="let f of recordList  | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }"></tr>">
+        <tr *ngFor="let f of recordList  | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }">
             <td>
                 {{f.id}}
             </td>
@@ -21,13 +21,14 @@
                 {{f.nombre}}
             </td>
             <td>
-                <a routerLink="/parametros/editar-facultad/{{r.id}}" class="btn btn-warning orange">Editar</a>
-                &nbsp;<a routerLink="/parametros/eliminar-facultad/{{r.id}}" class="btn btn-warning red">Eliminar</a>
+                <a routerLink="/parametros/editar-facultad/{{f.id}}" class="btn btn-warning orange">Editar</a>
+                &nbsp;<a routerLink="/parametros/eliminar-facultad/{{f.id}}" class="btn btn-warning red">Eliminar</a>
             </td>
         </tr>
         <tr>
             <td colspan="3">
-                <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+                <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente">
+                </pagination-controls>
             </td>
         </tr>
     </tbody>
