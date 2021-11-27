@@ -1,1 +1,35 @@
-<p>listar-tipo-comite works!</p>
+<br />
+<a routerLink="/parametros/crear-tipo-comite" class="btn btn-success">Nuevo Registro</a>
+<table class="table responsive-table">
+    <thead>
+        <th>
+            Id
+        </th>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Acciones
+        </th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let f of recordList  | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }">
+            <td>
+                {{f.id}}
+            </td>
+            <td>
+                {{f.nombre}}
+            </td>
+            <td>
+                <a routerLink="/parametros/editar-tipo-comite/{{f.id}}" class="btn btn-warning orange">Editar</a>
+                &nbsp;<a routerLink="/parametros/eliminar-tipo-comite/{{f.id}}" class="btn btn-warning red">Eliminar</a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+            </td>
+        </tr>
+    </tbody>
+</table>
+

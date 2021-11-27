@@ -1,1 +1,23 @@
-<p>editar-tipo-vinculacion works!</p>
+<div class="row">
+    <form [formGroup]="form" class="col s12">
+        <input type="hidden" formControlName="id" />
+        <div class="row">
+            <div class="input-field col s12">
+                <input formControlName="nombre" id="nombre" type="text" >
+                <label for="nombre" class="active">Nombre</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s2">
+                <a routerLink="/parametros/listar-tipo-vinculacion" class="btn btn-warning red">
+                    Cancelar
+                </a>
+            </div>
+            <div class="input-field col s10">
+                <button (click)="SaveRecord()" class="btn btn-success">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
