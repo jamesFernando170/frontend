@@ -13,12 +13,12 @@
         </th>
     </thead>
     <tbody>
-        <tr *ngFor="let f of recordList  | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }"></tr>">
+        <tr *ngFor="let f of recordList  | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }">
             <td>
                 {{f.id}}
             </td>
             <td>
-                {{f.nombre}}
+                {{f.nombreTipo}}
             </td>
             <td>
                 <a routerLink="/parametros/editar-tipo-vinculacion/{{f.id}}" class="btn btn-warning orange">Editar</a>

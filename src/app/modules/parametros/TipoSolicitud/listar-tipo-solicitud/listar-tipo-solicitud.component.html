@@ -1,1 +1,42 @@
-<p>listar-tipo-solicitud works!</p>
+<br />
+<a routerLink="/parametros/crear-tipo-solicitud" class="btn btn-success">Nuevo Registro</a>
+<table class="table responsive-table">
+    <thead>
+        <th>
+            Id
+        </th>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Formato
+        </th>
+        <th>
+            Acciones
+        </th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let f of recordList  | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }">
+            <td>
+                {{f.id}}
+            </td>
+            <td>
+                {{f.nombre}}
+            </td>
+            <td>
+                {{f.formato}}
+            </td>
+            <td>
+                <a routerLink="/parametros/editar-tipo-solicitud/{{f.id}}" class="btn btn-warning orange">Editar</a>
+                &nbsp;<a routerLink="/parametros/eliminar-tipo-solicitud/{{f.id}}" class="btn btn-warning red">Eliminar</a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+

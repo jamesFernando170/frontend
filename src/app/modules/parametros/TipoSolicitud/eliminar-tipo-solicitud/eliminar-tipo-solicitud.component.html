@@ -1,1 +1,34 @@
-<p>eliminar-tipo-solicitud works!</p>
+<div class="row">
+    <div class="row">
+        <input type="hidden" formControlName="id" />
+        <div class="input-field col s12">
+            <label>Está seguro de eliminar por completo el registro con la siguiente información:</label>
+            <br />
+            <ul>
+                <li>
+                   <strong> Id: {{id}}</strong>
+                </li>
+                <li>
+                    <strong> Nombre: {{nombre}}</strong>
+                </li>
+                <li>
+                    <strong> Formato: {{formato}}</strong>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s2">
+            <a routerLink="/parametros/listar-tipo-solicitud" class="btn btn-warning red">
+                Cancelar
+            </a>
+        </div>
+        <div class="input-field col s10">
+            <button (click)="RemoveRecord()" class="btn btn-success">
+                Confirmar
+            </button>
+        </div>
+    </div>
+</div>
+
+
