@@ -1,1 +1,29 @@
-<p>editar-departamento works!</p>
+<div class="row">
+    <form [formGroup]="form" class="col s12">
+        <input type="hidden" formControlName="id"/>
+        <div class="row">
+            <div class="input-field col s6">
+            <input formControlName="nombre" id="nombre" type="text" >
+            <label for="nombre">Nombre</label>
+            </div>
+        </div>
+        <div class="input-field col s6">
+            <select formControlName="idFacultad" id="selFacultad">
+                <option *ngFor="let f of facultadList " value="{{f.id}}">{{f.nombre}}</option>
+            </select>
+            <label>Facultad</label>
+        </div>
+        <div class="row">
+            <div class="input-field col s2">
+                <a routerLink="/parametros/listar-departamento" class="btn btn-warning red">
+                    Cancelar
+                </a>
+            </div>
+            <div class="input-field col s10">
+                <button (click)="SaveRecord()" class="btn btn-success">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
