@@ -16,19 +16,19 @@
         </th>
     </thead>
     <tbody>
-        <tr *ngFor="let f of recordList  | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }">
+        <tr *ngFor="let fa of recordList  | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }">
             <td>
-                {{f.id}}
+                {{fa.id}}
             </td>
             <td>
-                {{f.nombre}}
+                {{fa.nombre}}
             </td>
             <td>
-                {{f.facultad.nombre}}
+                {{fa.facultad.nombre}}
             </td>
             <td>
-                <a routerLink="/parametros/editar-departamento/{{f.id}}" class="btn btn-warning orange">Editar</a>
-                &nbsp;<a routerLink="/parametros/eliminar-departamento/{{f.id}}" class="btn btn-warning red">Eliminar</a>
+                <a routerLink="/parametros/editar-departamento/{{fa.id}}" class="btn btn-warning orange">Editar</a>
+                &nbsp;<a routerLink="/parametros/eliminar-departamento/{{fa.id}}" class="btn btn-warning red">Eliminar</a>
             </td>
         </tr>
         <tr>
