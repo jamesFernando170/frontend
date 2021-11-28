@@ -7,8 +7,8 @@ export class ProponenteModel {
     primerApellido?: string;
     segundoApellido?: string;
     correo?: string;
-    telefono?: string;
+    celular?: string;
     fotografia?: string;
     idTipoVinculacion?: number;
-    tipoVinculacion?: TipoVinculacionModel;
+    p_tienen_tv?: TipoVinculacionModel;
 }

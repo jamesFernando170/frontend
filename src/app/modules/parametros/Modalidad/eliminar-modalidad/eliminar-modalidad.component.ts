@@ -44,7 +44,7 @@ export class EliminarModalidadComponent implements OnInit {
     this.service.RemoveRecord(this.id).subscribe({
       next: (data: ModalidadModel) =>{
         openGeneralMessageModal(generalData.REMOVE_MESSAGE);
-        this.router.navigate(["/parametros/eliminar-modalidad"]);
+        this.router.navigate(["/parametros/listar-modalidad"]);
       },
       error: (err: any) => {
         openGeneralMessageModal(generalData.ERROR_MESSAGE);

@@ -7,5 +7,5 @@ export class UserData {
     nombre?: string;
     documento?: string;
     apellidos?: string;
-    fecha_nacimiento?: string;
+    //fecha_nacimiento?: string;
 }
