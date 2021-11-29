@@ -1,34 +1,41 @@
+<br>
 <div class="row">
     <form [formGroup]="form" class="col s12">
         <input type="hidden" formControlName="id" />
         <div class="row">
             <div class="input-field col s6">
                 <input formControlName="primerNombre" id="primerNombre" type="text">
-                <label for="nombre">Primer Nombre</label>
+                <label for="primerNombre">Primer Nombre</label>
             </div>
             <div class="input-field col s6">
                 <input formControlName="segundoNombre" id="segundoNombre" type="text">
-                <label for="nombre">Segundo Nombre</label>
+                <label for="segundoNombre">Segundo Nombre</label>
             </div>
             <div class="input-field col s6">
                 <input formControlName="primerApellido" id="primerApellido" type="text">
-                <label for="nombre">Primer Apellido</label>
+                <label for="primerApellido">Primer Apellido</label>
             </div>
             <div class="input-field col s6">
                 <input formControlName="segundoApellido" id="segundoApellido" type="text">
-                <label for="nombre">Segundo Apellido</label>
+                <label for="segundoApellido">Segundo Apellido</label>
             </div>
             <div class="input-field col s6">
                 <input formControlName="correo" id="correo" type="text">
-                <label for="nombre">Correo</label>
+                <label for="correo">Correo</label>
             </div>
             <div class="input-field col s6">
                 <input formControlName="telefono" id="telefono" type="text">
-                <label for="nombre">Telefono</label>
+                <label for="telefono">Telefono</label>
             </div>
             <div class="input-field col s6">
                 <input formControlName="fotografia" id="fotografia" type="text">
-                <label for="nombre">fotografia</label>
+                <label for="fotografia">fotografia</label>
+            </div>
+            <div class="input-field col s6">
+                <select formControlName="idtipoVinculacion" id="selTipoVinculacion">
+                    <option *ngFor="let f of tipoVinculacionList " value="{{f.id}}">{{f.nombreTipo}}</option>
+                </select>
+                <label>Facultad</label>
             </div>
         </div>
         <div class="row">

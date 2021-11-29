@@ -12,7 +12,7 @@ export class ProponenteService {
 
   url: string = generalData.BUSSINES_URL;
   token: string = "";
-  //filter: string = `?filter={"include":[{"relation":"TipoVinculacion"}]}`;
+  filter: string = `?filter={"include":[{"relation":"p_tienen_tv"}]}`;
   constructor(
     private http: HttpClient,
     private localStorageService: LocalStorageService
@@ -21,7 +21,7 @@ export class ProponenteService {
   }
 
   GetRecordList(): Observable<ProponenteModel[]> {
-    return this.http.get<ProponenteModel[]>(`${this.url}/proponente-trabajos`);
+    return this.http.get<ProponenteModel[]>(`${this.url}/proponente-trabajos${this.filter}`);
   }
 
   SaveRecord(data: ProponenteModel): Observable<ProponenteModel> {
@@ -31,7 +31,7 @@ export class ProponenteService {
       primerApellido: data.primerApellido,
       segundoApellido: data.segundoApellido,
       correo: data.correo,
-      telefono: data.telefono
+      celular: data.celular
     },
       {
         headers: new HttpHeaders({
@@ -54,7 +54,7 @@ export class ProponenteService {
         primerApellido: data.primerApellido,
         segundoApellido: data.segundoApellido,
         correo: data.correo,
-        telefono: data.telefono
+        celular: data.celular
       },
       {
         headers: new HttpHeaders({

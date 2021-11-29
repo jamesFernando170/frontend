@@ -3,7 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { generalData } from 'src/app/config/general-data';
 import { ProponenteModel } from 'src/app/models/parametros/proponente.model';
+import { TipoVinculacionModel } from 'src/app/models/parametros/tipo-vinculacion.model';
 import { ProponenteService } from 'src/app/services/parametros/proponente.service';
+import { TipoVinculacionService } from 'src/app/services/parametros/tipo-vinculacion.service';
 
 declare const openGeneralMessageModal: any;
 declare const InitSelectById: any;
@@ -15,14 +17,14 @@ declare const InitSelectById: any;
 })
 export class CrearProponenteComponent implements OnInit {
 
-  proponenteList : ProponenteModel[] = [];
+  tipoVinculacionList: TipoVinculacionModel[] = [];
   form: FormGroup = new FormGroup({});
   
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private service: ProponenteService,
-    private proponenteService: ProponenteService
+    private tipoVinculacionService: TipoVinculacionService,
   ) { }
 
   ngOnInit(): void {
@@ -30,14 +32,15 @@ export class CrearProponenteComponent implements OnInit {
     this.GetOptionsToSelects();
   }
 
-
   GetOptionsToSelects() {
-    this.proponenteService.GetRecordList().subscribe(
+    this.tipoVinculacionService.GetRecordList().subscribe(
       {
-        next: (data: ProponenteModel[]) => {
-          this.proponenteList = data;
+        next: (data: TipoVinculacionModel[]) => {
+          this.tipoVinculacionList = data;
+          console.log(this.tipoVinculacionList);
+
           setTimeout(() => {
-            InitSelectById("selDepartamento");
+            InitSelectById("selTipoVinculacion");
           }, 100);
         }
       }
@@ -64,7 +67,7 @@ export class CrearProponenteComponent implements OnInit {
     model.primerApellido = this.GetForm['primerApellido'].value;
     model.segundoApellido = this.GetForm['segundoApellido'].value;
     model.correo = this.GetForm['correo'].value;
-    model.telefono = this.GetForm['telefono'].value;
+    model.celular = this.GetForm['telefono'].value;
     model.fotografia = this.GetForm['fotografia'].value;
     this.service.SaveRecord(model).subscribe({
       next: (data: ProponenteModel) =>{

@@ -114,6 +114,13 @@ const routes: Routes = [
     component: EditarJuradoComponent
   },
   {
+    path: "editar-jurado/:id",
+    component: EditarJuradoComponent
+  }, {
+    path: "eliminar-jurado/:id",
+    component: EliminarJuradoComponent
+  },
+  {
     path: "eliminar-jurado",
     component: EliminarJuradoComponent
   },
@@ -155,6 +162,13 @@ const routes: Routes = [
     component: EditarProponenteComponent
   },
   {
+    path: "editar-proponente/:id",
+    component: EditarProponenteComponent
+  }, {
+    path: "eliminar-proponente/:id",
+    component: EliminarProponenteComponent
+  },
+  {
     path: "eliminar-proponente",
     component: EliminarProponenteComponent
   },
@@ -172,6 +186,13 @@ const routes: Routes = [
     component: EditarTipoComiteComponent
   },
   {
+    path: "editar-tipo-comite/:id",
+    component: EditarTipoComiteComponent
+  }, {
+    path: "eliminar-tipo-comite/:id",
+    component: EliminarTipoComiteComponent
+  },
+  {
     path: "eliminar-tipo-comite",
     component: EliminarTipoComiteComponent
   },
@@ -185,9 +206,17 @@ const routes: Routes = [
     component: CrearTipoSolicitudComponent
   },
   {
+    path: "editar-tipo-solicitud/:id",
+    component: EditarTipoSolicitudComponent
+  }, {
+    path: "eliminar-tipo-solicitud/:id",
+    component: EliminarTipoSolicitudComponent
+  },
+  {
     path: "editar-tipo-solicitud",
     component: EditarTipoSolicitudComponent
   },
+  
   {
     path: "eliminar-tipo-solicitud",
     component: EliminarTipoSolicitudComponent
@@ -196,9 +225,17 @@ const routes: Routes = [
     path: "listar-tipo-solicitud",
     component: ListarTipoSolicitudComponent
   },
+  /**TipoVinculacion */
   {
     path: "crear-tipo-vinculacion",
     component: CrearTipoVinculacionComponent
+  },
+  {
+    path: "editar-tipo-vinculacion/:id",
+    component: EditarTipoVinculacionComponent
+  }, {
+    path: "eliminar-tipo-vinculacion/:id",
+    component: EliminarTipoVinculacionComponent
   },
   {
     path: "editar-tipo-vinculacion",

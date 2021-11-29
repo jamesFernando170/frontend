@@ -32,6 +32,7 @@ export class EditarAreaInvestigacionComponent implements OnInit {
 
   createForm() {
     this.form = this.fb.group({
+      id: ["", [Validators.required]],
       nombre: ["", [Validators.required]]
     });
   }
@@ -48,6 +49,7 @@ export class EditarAreaInvestigacionComponent implements OnInit {
 
   SaveRecord(){
     let model = new AreaInvestigacionModel();
+    model.id = this.GetForm['id'].value;
     model.nombre = this.GetForm['nombre'].value;
     this.service.EditRecord(model).subscribe({
       next: (data: AreaInvestigacionModel) =>{
