@@ -75,6 +75,8 @@ export class SolicitudService {
   }
 
   RemoveRecord(id: number): Observable<any> {
+    console.log(id);
+    
     return this.http.delete(
       `${this.url}/solicituds/${id}`,
       {

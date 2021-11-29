@@ -59,6 +59,8 @@ export class EliminarSolicitudComponent implements OnInit {
   RemoveRecord() {
     this.service.RemoveRecord(this.id).subscribe({
       next: (data: SolicitudModel) => {
+        console.log(data);
+        
         openGeneralMessageModal(generalData.REMOVE_MESSAGE);
         this.router.navigate(["/parametros/listar-facultad"]);
       },
