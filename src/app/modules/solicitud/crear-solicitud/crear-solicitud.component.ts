@@ -7,6 +7,7 @@ import { ModalidadModel } from 'src/app/models/parametros/modalidad.model';
 import { TipoComiteModel } from 'src/app/models/parametros/tipo-comite.model';
 import { TipoSolicitudModel } from 'src/app/models/parametros/tipo-solicitud.model';
 import { SolicitudModel } from 'src/app/models/solicitud/solicitud.model';
+import { UploadedFileModel } from 'src/app/models/solicitud/uploaded.file.model';
 import { AreaInvestigacionService } from 'src/app/services/parametros/area-investigacion.service';
 import { ModalidadService } from 'src/app/services/parametros/modalidad.service';
 import { TipoComiteService } from 'src/app/services/parametros/tipo-comite.service';
@@ -26,6 +27,11 @@ export class CrearSolicitudComponent implements OnInit {
   listaModalidad: ModalidadModel[] = [];
   listaTipoSolicitud: TipoSolicitudModel[] = [];
   form: FormGroup = new FormGroup({});
+  formFile: FormGroup = new FormGroup({});//para los archivos
+
+  url: string = generalData.BUSSINES_URL;
+  uploadedFilename?: string = "";
+  uploadedFile: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -39,6 +45,7 @@ export class CrearSolicitudComponent implements OnInit {
 
   ngOnInit(): void {
     this.CreateForm();
+    this.CreateFormFile();
     this.GetOptionsToSelects(); //trae la información de los selec
   }
 
@@ -103,15 +110,23 @@ export class CrearSolicitudComponent implements OnInit {
       modalidad: ["", [Validators.required]],
       areaInvestigacion: ["", [Validators.required]],
       tiposComite: ["", [Validators.required]],
+      archivo:["", [Validators.required]]//archivo que se carga 
     });
   }
+
+  CreateFormFile(){
+    this.formFile = this.fb.group({
+      file: ["", []]  //atributo vacio y sin ningun requerimiento 
+    });
+  }
+
 
   SaveRecord() {
     let model = new SolicitudModel();
     model.nombreTrabajo = this.GetForm['nombreTrabajo'].value;
     console.log(this.GetForm['tipoSolicitud'].value);
     
-    //model.archivo = this.GetForm['archivo'].value;//para poner el archivo
+    model.archivo = this.GetForm['archivo'].value;//para poner el archivo
     model.fecha = this.GetForm['fecha'].value;
     model.descripcion = this.GetForm['descripcion'].value;
     model.idTipoSolicitud =parseInt(this.GetForm['tipoSolicitud'].value);
@@ -135,6 +150,28 @@ export class CrearSolicitudComponent implements OnInit {
     return this.form.controls;
   }
 
+  //disparador del cambio 
+  OnchangeInputFile(event: any){
+    if(event.target.files.length > 0){
+      const file = event.target.files[0];
+      this.formFile.controls["file"].setValue(file);//asigno el archivo
+    }
+  }
 
+  //Subimos el archivo cargado
+  UpLoadArchivo(){
+    //generar un fornData pero no en HTML, sino por TS
+    const formData = new FormData();
+    formData.append("file", this.formFile.controls["file"].value) //el primer "file", mismo nombre de documentos en keys del backend...obtengo el archivo
+
+    //lo envío al servicio 
+    this.service.UploadFile(formData).subscribe({
+      next: (data: UploadedFileModel) =>{
+        this.form.controls["archivo"].setValue(data.filename)
+        this.uploadedFilename = data.filename;
+        this.uploadedFile = true;
+      }
+    })
+  }
 
 }
