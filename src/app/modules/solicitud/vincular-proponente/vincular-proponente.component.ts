@@ -53,13 +53,16 @@ export class VincularProponenteComponent implements OnInit {
   }
 
   SaveRecord() {
-    let IdProponentes = this.GetForm['selProponente'].value;
+    let IdProponentes = this.GetForm['proponentes'].value;
+    console.log(this.GetForm['proponentes'].value);
     let id = parseInt(this.route.snapshot.params["id"]);
+    console.log(IdProponentes);
+    
 
     this.service.asociarProponeteSolicitud(id, IdProponentes).subscribe({
       next: () => {
         console.log("Sirvio Perri");
-        
+        this.router.navigate(["/solicitud/listar-solicitud"]);
       }
     })
 
