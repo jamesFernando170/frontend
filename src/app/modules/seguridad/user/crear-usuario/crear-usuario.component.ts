@@ -17,7 +17,7 @@ declare const InitSelectById: any;
 })
 export class CrearUsuarioComponent implements OnInit {
 
-  rolList : RolModel[] = [];
+  rolList: RolModel[] = [];
   form: FormGroup = new FormGroup({});
 
   constructor(
@@ -31,7 +31,7 @@ export class CrearUsuarioComponent implements OnInit {
     this.createForm();
     this.GetOptionsToSelects();
     console.log(this.rolList);
-    
+
   }
 
 
@@ -41,7 +41,7 @@ export class CrearUsuarioComponent implements OnInit {
         next: (data: RolModel[]) => {
           this.rolList = data;
           console.log(this.rolList);
-          
+
           setTimeout(() => {
             InitSelectById("selRol");
           }, 100);
@@ -62,7 +62,7 @@ export class CrearUsuarioComponent implements OnInit {
     });
   }
 
-  SaveRecord(){
+  SaveRecord() {
     let model = new UsuarioModel();
     model.nombre = this.GetForm['nombre'].value;
     model.apellidos = this.GetForm['apellidos'].value;
@@ -70,11 +70,21 @@ export class CrearUsuarioComponent implements OnInit {
     model.fecha_nacimiento = this.GetForm['fecha_nacimiento'].value;
     model.celular = this.GetForm['celular'].value;
     model.correo = this.GetForm['correo'].value;
-    //model.nombre = this.GetForm['idRoles'].value;
+    let roles = this.GetForm['idRoles'].value;
     this.service.SaveRecord(model).subscribe({
-      next: (data: UsuarioModel) =>{
-        openGeneralMessageModal(generalData.SAVED_MESSAGE);
-        this.router.navigate(["/seguridad/listar-usuario"]);
+      next: (data: UsuarioModel) => {
+        console.log(data);
+        if (data._id) {
+          this.service.asociarUsuarioxRoles(data._id, roles).subscribe({
+            next: () => {
+              console.log("sirvce");
+              
+            }
+          })
+          openGeneralMessageModal(generalData.SAVED_MESSAGE);
+          this.router.navigate(["/seguridad/listar-usuario"]);
+        }
+
       },
       error: (err: any) => {
         openGeneralMessageModal(generalData.ERROR_MESSAGE);

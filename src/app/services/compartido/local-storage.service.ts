@@ -26,10 +26,13 @@ export class LocalStorageService {
 
   GetToken(): string{
     let saved = localStorage.getItem("session-data");
-    if(saved){
-      let data = JSON.parse(saved);
-      return data.token;
+    
+    if(saved){      
+      let data = JSON.parse(saved);      
+      return data.tokens;
     }
+    console.log("nooo entroo");
+    
     return "";
   }
 }

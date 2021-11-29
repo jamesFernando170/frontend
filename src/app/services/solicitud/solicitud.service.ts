@@ -18,6 +18,7 @@ export class SolicitudService {
     private localStorageService: LocalStorageService
   ) {
     this.token = this.localStorageService.GetToken();
+    
   }
 
   GetRecordList(): Observable<SolicitudModel[]> {
@@ -25,9 +26,11 @@ export class SolicitudService {
   }
 
   SaveRecord(data: SolicitudModel): Observable<SolicitudModel> {
+    console.log("TOKEN" + this.token);
+    
     return this.http.post<SolicitudModel>(
       `${this.url}/solicituds`, //lo que va en el post del controlador de solicitud
-      {
+      {        
         //le envio los otributos de solicitud que estan en el solicitud.model, en la carpeta models
         fecha: data.fecha,  
         nombreTrabajo: data.nombreTrabajo ,

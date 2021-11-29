@@ -1,3 +1,4 @@
+<br>
 <div class="row">
     <form [formGroup]="form" class="col s12">
         <div class="row">
@@ -13,28 +14,35 @@
                 <input formControlName="descripcion" id="txtDescripcion" type="text">
                 <label for="txtDescripcion">Descripción</label>
             </div>
-            <div class="input-field col s3">
-                <input formControlName="tipoSolicitud" id="txtTipoSolicitud" type="text">
-                <label for="txtTipoSolicitud">Tipo solicitud</label>
-            </div>
         </div>
 
         <div class="row">
             <div class="input-field col s3">
-                <input formControlName="modalidad" id="txtModalidad" type="text">
-                <label for="txtModalidad">Modalidad</label>
+                <select formControlName="tipoSolicitud" id="selTipoSolicitud">
+                    <!-- cargar las opciones desde la base de datos -->
+                    <option *ngFor = "let ts of listaTipoSolicitud" value="{{ts.id}}">{{ts.nombre}}</option> <!-- dibujar las opciones de solicitud a area de investigación -->
+                </select>
+                <label>Tipo solicitud</label>
+            </div>
+
+            <div class="input-field col s3">
+                <select formControlName="modalidad" id="selModalidad">
+                    <!-- cargar las opciones desde la base de datos -->
+                    <option *ngFor = "let m of listaModalidad" value="{{m.id}}">{{m.nombre}}</option> <!-- dibujar las opciones de solicitud a area de investigación -->
+                </select>
+                <label>Modalidad</label>
             </div>
             <div class="input-field col s3">
-                <select id="selAreaInvestigacion">
+                <select formControlName="areaInvestigacion" id="selAreaInvestigacion">
                     <!-- cargar las opciones desde la base de datos -->
-                    <option *ngFor = "let b of listaAreasInvestigacion" value="{{b.id}}">{{b.name}}</option> <!-- dibujar las opciones de solicitud a area de investigación -->
+                    <option *ngFor = "let b of listaAreasInvestigacion" value="{{b.id}}">{{b.nombre}}</option> <!-- dibujar las opciones de solicitud a area de investigación -->
                 </select>
                 <label>Area de investigación</label>
             </div>
             <div class="input-field col s3">
-                <select id="selComite">
+                <select multiple formControlName="tiposComite" id="selComite">
                     <!-- cargar las opciones desde la base de datos -->
-                    <option *ngFor = "let c of listaComite" value="{{c.id}}">{{c.name}}</option> <!-- dibujar las opciones de solicitud a area de investigación -->
+                    <option *ngFor = "let c of listaComite" value="{{c.id}}">{{c.nombre}}</option> <!-- dibujar las opciones de solicitud a area de investigación -->
                 </select>
                 <label>Tipos de comite</label>
             </div>

@@ -1,5 +1,6 @@
 <br />
-<a routerLink="/solicitud/crear-solicitud" class="btn btn-success">Nuevo Registro</a>  <!-- mirar si las direcciones son correctas -->
+<a routerLink="/solicitud/crear-solicitud" class="btn btn-success">Nuevo Registro</a>
+<!-- mirar si las direcciones son correctas -->
 
 <table class="table responsive-table">
     <thead>
@@ -49,31 +50,34 @@
                 {{r.descripcion}}
             </td>
             <td>
-                {{r.tipoSolicitud?.name}}
+                {{r.s_es_ts?.nombre}}
             </td>
             <td>
-                {{r.modalidad?.name}}
+                {{r.modalidad?.nombre}}
             </td>
             <td>
-                {{r.areaInvestigacion?.name}}
+                {{r.areaInvestigacion?.nombre}}
             </td>
             <td>
                 <ul>
-                    <li *ngFor= "let c of r.tiposComite">{{c.name}}</li> <!-- objetos de tipos de comite -->
+                    <li *ngFor="let c of r.tiposComite">{{c.nombre}}</li> <!-- objetos de tipos de comite -->
                 </ul>
-                <!-- {{r.tiposComite?.name}} -->
+                <!-- {{r.tiposComite?.nombre}} -->
             </td>
             <!-- <td>
-                {{r.estadoSolicitud?.name}}
+                {{r.estadoSolicitud?.nombre}}
             </td> -->
             <td>
-                <a routerLink="/parametros/editar-solicitud/{{r.id}}" class="btn btn-warning orange">Editar</a> <!-- mirar si las direcciones son correctas -->
-                &nbsp;<a routerLink="/parametros/eliminar-solicitud/{{r.id}}" class="btn btn-warning red">Eliminar</a>  <!-- mirar si las direcciones son correctas -->
+                <a routerLink="/parametros/editar-solicitud/{{r.id}}" class="btn btn-warning orange">Editar</a>
+                <!-- mirar si las direcciones son correctas -->
+                &nbsp;<a routerLink="/parametros/eliminar-solicitud/{{r.id}}" class="btn btn-warning red">Eliminar</a>
+                <!-- mirar si las direcciones son correctas -->
             </td>
         </tr>
         <tr>
             <td colspan="3">
-                <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+                <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente">
+                </pagination-controls>
             </td>
         </tr>
     </tbody>

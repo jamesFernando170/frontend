@@ -25,7 +25,7 @@ export class ListarUsuarioComponent implements OnInit {
 
   GetRecordList(){
     this.service.GetRecordList().subscribe({
-      next: (data:  UsuarioModel[]) => {
+      next: (data:  UsuarioModel[]) => {        
         this.recordList = data;
         this.total = this.recordList.length;
       }

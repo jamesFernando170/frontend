@@ -10,5 +10,5 @@ export class UsuarioModel {
     apellidos?: string;
     fecha_nacimiento?: string;
     idRoles?: string[];
-    roles?: RolModel[];
+    tiene_el_rol?: RolModel[];
 }

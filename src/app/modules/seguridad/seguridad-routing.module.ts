@@ -43,7 +43,15 @@ const routes: Routes = [
     component: ListarUsuarioComponent
   },
   {
-    path: "eliminar-usuario",
+    path: "editar-usuario",
+    component: EditarUsuarioComponent
+  },
+  {
+    path: "listar-usuario",
+    component: ListarUsuarioComponent
+  },
+  {
+    path: "eliminar-usuario/:id",
     component: EliminarUsuarioComponent
   },
 // *Rol

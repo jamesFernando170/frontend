@@ -17,7 +17,7 @@ declare const InitSelectById: any;
 })
 export class EditarUsuarioComponent implements OnInit {
 
-  rolList : RolModel[] = [];
+  rolList: RolModel[] = [];
   form: FormGroup = new FormGroup({});
 
   constructor(
@@ -38,6 +38,7 @@ export class EditarUsuarioComponent implements OnInit {
     this.rolService.GetRecordList().subscribe(
       {
         next: (data: RolModel[]) => {
+          
           this.rolList = data;
           setTimeout(() => {
             InitSelectById("selRol");
@@ -45,11 +46,13 @@ export class EditarUsuarioComponent implements OnInit {
         }
       }
     );
+
+    InitSelectById("selEstado");
   }
 
   createForm() {
     this.form = this.fb.group({
-      __id: ["", [Validators.required]],
+      _id: ["", [Validators.required]],
       nombre: ["", [Validators.required]],
       apellidos: ["", [Validators.required]],
       documento: ["", [Validators.required]],
@@ -61,11 +64,11 @@ export class EditarUsuarioComponent implements OnInit {
     });
   }
 
-  SearchRecord(){
-    let _id = this.route.snapshot.params["_id"];
+  SearchRecord() {
+    let _id = this.route.snapshot.params["id"];
     this.service.SearchRecord(_id).subscribe({
       next: (data: UsuarioModel) => {
-        this.GetForm['_id'].setValue(data._id);
+        this.GetForm['_id'].setValue(data._id);        
         this.GetForm['nombre'].setValue(data.nombre);
         this.GetForm['apellidos'].setValue(data.apellidos);
         this.GetForm['documento'].setValue(data.documento);
@@ -76,7 +79,7 @@ export class EditarUsuarioComponent implements OnInit {
     });
   }
 
-  SaveRecord(){
+  SaveRecord() {
     let model = new UsuarioModel();
     model._id = this.GetForm['_id'].value;
     model.nombre = this.GetForm['nombre'].value;
@@ -85,11 +88,31 @@ export class EditarUsuarioComponent implements OnInit {
     model.fecha_nacimiento = this.GetForm['fecha_nacimiento'].value;
     model.celular = this.GetForm['celular'].value;
     model.correo = this.GetForm['correo'].value;
-    model.idRoles = this.GetForm["idRoles"].value
+    model.estado = this.GetForm['estado'].value;
+    if (this.GetForm['estado'].value === 'true') {
+      model.estado = true;
+    } else {
+      model.estado = false
+    }
+    let roles = this.GetForm['idRoles'].value;
+    let mod = UsuarioModel;
+    console.log(mod);
     this.service.EditRecord(model).subscribe({
-      next: (data: UsuarioModel) =>{
-        openGeneralMessageModal(generalData.SAVED_MESSAGE);
-        this.router.navigate(["/seguridad/listar-usuario"]);
+      next: (data: UsuarioModel) => {
+        console.log(data);
+        
+        if (data._id) {
+          console.log(data);
+          
+          this.service.asociarUsuarioxRoles(data._id, roles).subscribe({
+            next: () => {
+              console.log("sirvce");
+
+            }
+          })
+          openGeneralMessageModal(generalData.SAVED_MESSAGE);
+          this.router.navigate(["/seguridad/listar-usuario"]);
+        }
       },
       error: (err: any) => {
         openGeneralMessageModal(generalData.ERROR_MESSAGE);

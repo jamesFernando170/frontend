@@ -31,7 +31,7 @@ export class CambioClaveComponent implements OnInit {
 
   createForm() {
     this.form = this.fb.group({
-      username: ["", [Validators.required, Validators.email, Validators.minLength(generalData.EMAIL_MIN_LENGHT)]],
+      username: ["", [Validators.required/* , Validators.email, Validators.minLength(generalData.EMAIL_MIN_LENGHT) */]],
       password: ["", [Validators.required, Validators.minLength(generalData.PASSWORD_MIN_LENGHT)]],
       passwordNew: ["", [Validators.required, Validators.minLength(generalData.PASSWORD_MIN_LENGHT)]]
     });
@@ -48,18 +48,13 @@ export class CambioClaveComponent implements OnInit {
       console.log(modelo.user);
 
       this.securityServices.cambiarClave(modelo).subscribe({
-        /* next: (data: SessionData) => {
-           console.log(data);
-          this.localStorageServices.SaveSessionData(data);
-          data.isLoggedIn = true;
-          this.securityServices.RefreshSessionData(data);
+        next: () => {
+          openGeneralMessageModal(generalData.PASSWORD_CHANGE)
           this.router.navigate(["/home"])
-          console.log("ERROR");
-          
         },
         error: (error: any) => {
           openGeneralMessageModal(generalData.GENERAL_ERROR_MESSAGE)
-        } */
+        }
       });
     }
   }

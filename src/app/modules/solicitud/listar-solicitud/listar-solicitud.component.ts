@@ -27,6 +27,7 @@ export class ListarSolicitudComponent implements OnInit {
   GetRecordList() {
     this.service.GetRecordList().subscribe({
       next: (data: SolicitudModel[]) => {
+        console.log(data[0].s_es_ts?.id);        
         this.recordList = data;
         this.total = this.recordList.length;
       }

@@ -17,7 +17,7 @@
         </div>
         <div class="row">
             <div class="input-field col s4">
-                <input formControlName="fecha_nacimiento" id="fecha_nacimiento" type="date" >
+                <input formControlName="fecha_nacimiento" id="fecha_nacimiento" type="text" >
                 <label for="fecha_nacimiento">Fecha de Nacimiento</label>
             </div>
             <div class="input-field col s4">
@@ -37,9 +37,9 @@
                 </select>
                 <label>Estado</label>
             </div>
-            <div class="input-field col s6">
+            <div class="input-field col s12">
                 <select multiple formControlName="idRoles" id="selRol">
-                    <option *ngFor="let r of rolList " value="{{r.id}}">{{r.nombre}}</option>
+                    <option *ngFor="let r of rolList " value="{{r._id}}">{{r.nombre}}</option>
                 </select>
                 <label>Roles</label>
             </div>

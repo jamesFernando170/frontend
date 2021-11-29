@@ -5,11 +5,15 @@
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
             <li *ngIf="!session"><a routerLink="seguridad/login"><i class="material-icons">login</i></a></li>
-            <li *ngIf="session"><a class="dropdown-trigger" routerLink="/home" data-target="dropdown1"> Parametros <i
+            <li *ngIf="session"><a class="dropdown-trigger" data-target="dropdown1"> Parametros <i
                         class="material-icons right">arrow_drop_down</i></a></li>
+            <li *ngIf="session"><a routerLink="solicitud/listar-solicitud">solicitudes</a></li>
+            <li *ngIf="session" class=""><a routerLink="seguridad/cambio-clave"><i
+                        class="material-icons">account_circle</i></a></li>
+            <li *ngIf="session" class=""><a routerLink="seguridad/listar-usuario"><i
+                        class="material-icons">create</i></a></li>
             <li *ngIf="session" class=""><a routerLink="seguridad/logout"><i class="material-icons">logout</i></a></li>
-            <li *ngIf="session" class=""><a routerLink="seguridad/cambio-clave"><i class="material-icons">account_circle</i></a></li>
-         <!--    <li><a href="sass.html"><i class="material-icons">search</i></a></li> -->
+            <!--    <li><a href="sass.html"><i class="material-icons">search</i></a></li> -->
 
         </ul>
 
@@ -29,6 +33,7 @@
     <li *ngIf="session"><a routerLink="parametros/listar-tipo-comite">Tipos comite</a></li>
     <li *ngIf="session"><a routerLink="parametros/listar-tipo-solicitud">Tipos solicitud</a></li>
     <li *ngIf="session"><a routerLink="parametros/listar-tipo-vinculacion">tipo-vinculacion</a></li>
+    <!-- <li *ngIf="session"><a routerLink="solicitud/listar-solicitud">solicitudes</a></li> -->
     <!--   <li *ngIf="session" class=""><a routerLink="seguridad/logout">Logout</a></li> -->
 </ul>
 
@@ -47,6 +52,7 @@
     <li *ngIf="session"><a routerLink="parametros/listar-tipo-solicitud">Tipos solicitud</a></li>
     <li *ngIf="session"><a routerLink="parametros/listar-tipo-vinculacion">tipo-vinculacion</a></li>
     <li *ngIf="session" class=""><a routerLink="seguridad/logout">Logout</a></li>
+    <li *ngIf="session"><a routerLink="solicitud/listar-solicitud">solicitudes</a></li>
 </ul>
 
 <!-- <nav>

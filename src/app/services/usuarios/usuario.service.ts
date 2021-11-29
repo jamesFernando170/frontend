@@ -17,20 +17,18 @@ export class UsuarioService {
   constructor(
     private http: HttpClient,
     private localStorageService: LocalStorageService
-  ){ 
+  ) {
     this.token = localStorageService.GetToken();
   }
 
-  GetRecordList(): Observable<UsuarioModel[]>{
-    console.log(this.http.get<UsuarioModel[]>(`${this.url}/usuarios${this.filter}`));
-    
-    return this.http.get<UsuarioModel[]>(`${this.url}/usuarios${this.filter}`);
+  GetRecordList(): Observable<UsuarioModel[]> {
+    return this.http.get<UsuarioModel[]>(`${this.url}/lista-usuarios${this.filter}`);
   }
 
 
   //Falta lo de enlazarlo con los roles..
-  SaveRecord(data: UsuarioModel):  Observable<UsuarioModel>{
-    return this.http.post<UsuarioModel>(`${this.url}/usuarios`,{
+  SaveRecord(data: UsuarioModel): Observable<UsuarioModel> {
+    return this.http.post<UsuarioModel>(`${this.url}/usuarios`, {
       correo: data.correo,
       nombre: data.nombre,
       celular: data.celular,
@@ -38,19 +36,21 @@ export class UsuarioService {
       apellidos: data.apellidos,
       fecha_nacimiento: data.fecha_nacimiento
     },
-    {
-      headers: new HttpHeaders({
-        Authorization: `Bearer ${this.token}`
+      {
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${this.token}`
+        })
       })
-    })
   }
 
-  SearchRecord(id: string): Observable<UsuarioModel>{
+  SearchRecord(id: string): Observable<UsuarioModel> {
     return this.http.get<UsuarioModel>(`${this.url}/usuarios/${id}`);
   }
 
   //Falta lo de enlazarlo con los roles..
   EditRecord(data: UsuarioModel): Observable<UsuarioModel> {
+    console.log(data);
+
     return this.http.put<UsuarioModel>(
       `${this.url}/usuarios/${data._id}`,
       {
@@ -69,7 +69,7 @@ export class UsuarioService {
       });
   }
 
-  RemoveRecord(id: string): Observable<any>{
+  RemoveRecord(id: string): Observable<any> {
     return this.http.delete(
       `${this.url}/usuarios/${id}`,
       {
@@ -77,5 +77,10 @@ export class UsuarioService {
           Authorization: `Bearer ${this.token}`
         })
       });
+  }
+  asociarUsuarioxRoles(id: string, idRoles: string[]): Observable<any> {
+    return this.http.post(`${this.url}/asociar-usuario-roles/${id}`, {
+      roles: idRoles
+    });
   }
 }
