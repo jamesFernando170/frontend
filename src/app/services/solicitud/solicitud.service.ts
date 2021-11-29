@@ -18,7 +18,7 @@ export class SolicitudService {
     private localStorageService: LocalStorageService
   ) {
     this.token = this.localStorageService.GetToken();
-    
+
   }
 
   GetRecordList(): Observable<SolicitudModel[]> {
@@ -27,15 +27,19 @@ export class SolicitudService {
 
   SaveRecord(data: SolicitudModel): Observable<SolicitudModel> {
     console.log("TOKEN" + this.token);
-    
+
     return this.http.post<SolicitudModel>(
       `${this.url}/solicituds`, //lo que va en el post del controlador de solicitud
-      {        
+      {
         //le envio los otributos de solicitud que estan en el solicitud.model, en la carpeta models
-        fecha: data.fecha,  
-        nombreTrabajo: data.nombreTrabajo ,
-        descripcion: data.descripcion ,
-        archivo: data.archivo
+        fecha: data.fecha,
+        nombreTrabajo: data.nombreTrabajo,
+        descripcion: data.descripcion,
+        archivo: data.archivo,
+        idTipoSolicitud: data.idTipoSolicitud,
+        idEstadoSolicitud: data.idEstadoSolicitud,
+        idModalidad: data.idModalidad,
+        idAreaInvestigacion: data.idAreaInvestigacion
       },
       {
         headers: new HttpHeaders({
@@ -44,7 +48,7 @@ export class SolicitudService {
       });
   }
 
-  SearchRecord(id: number): Observable<SolicitudModel>{
+  SearchRecord(id: number): Observable<SolicitudModel> {
     return this.http.get<SolicitudModel>(`${this.url}/solicituds/${id}`);
   }
 
@@ -54,10 +58,14 @@ export class SolicitudService {
       {
         id: data.id,
         //le envio los otributos de solicitud que estan en el solicitud.model, en la carpeta models
-        fecha: data.fecha,  
-        nombreTrabajo: data.nombreTrabajo ,
-        descripcion: data.descripcion ,
-        archivo: data.archivo
+        fecha: data.fecha,
+        nombreTrabajo: data.nombreTrabajo,
+        descripcion: data.descripcion,
+        archivo: data.archivo,
+        idTipoSolicitud: data.idTipoSolicitud,
+        idEstadoSolicitud: data.idEstadoSolicitud,
+        idModalidad: data.idModalidad,
+        idAreaInvestigacion: data.idAreaInvestigacion
       },
       {
         headers: new HttpHeaders({
@@ -66,7 +74,7 @@ export class SolicitudService {
       });
   }
 
-  RemoveRecord(id: number): Observable<any>{
+  RemoveRecord(id: number): Observable<any> {
     return this.http.delete(
       `${this.url}/solicituds/${id}`,
       {
@@ -76,10 +84,16 @@ export class SolicitudService {
       });
   }
 
-  asociarTiposComiteSolicitud(id: number, IdTiposComites: number[]): Observable<any> {
-    return this.http.post(`${this.url}/asociar-usuario-roles/${id}`, { /* Agregar la funcion en el controlador de varios Tipos comite a solicitud */
-      tiposComite: IdTiposComites
+  asociarTiposComiteSolicitud(id: number, IdTiposComites: string[]): Observable<any> {
+    let nuevoArreglo = [];
+    for (let i = 0; i < IdTiposComites.length; i++) {
+      nuevoArreglo.push(parseInt(IdTiposComites[i]))
+    }
+    console.log(nuevoArreglo);
+    
+    return this.http.post(`${this.url}/asociar-solicitud-comites/${id}`, { /* Agregar la funcion en el controlador de varios Tipos comite a solicitud */
+      arregloGenerico: nuevoArreglo
     });
   }
-  
+
 }

@@ -23,7 +23,7 @@ declare const InitSelectById: any;
   styleUrls: ['./crear-solicitud.component.css']
 })
 export class CrearSolicitudComponent implements OnInit {
-  
+
   listaAreasInvestigacion: AreaInvestigacionModel[] = []; // atributos para usar en el html, en la parte de listas desplegables
   listaComite: TipoComiteModel[] = [];// atributos para usar en el html, en la parte de listas desplegables
   listaModalidad: ModalidadModel[] = [];
@@ -100,7 +100,7 @@ export class CrearSolicitudComponent implements OnInit {
     this.estadoSolicitudService.GetRecordList().subscribe(
       {
         next: (data: estadoSolicitudModel[]) => {
-          this.listaComite = data;
+          this.listaEstadoSolicitud = data;
           setTimeout(() => {
             InitSelectById("selEstado");
           }, 100);
@@ -131,17 +131,27 @@ export class CrearSolicitudComponent implements OnInit {
     //model.archivo = this.GetForm['archivo'].value;//para poner el archivo
     model.fecha = this.GetForm['fecha'].value;
     model.descripcion = this.GetForm['descripcion'].value;
-    model.idTipoSolicitud =parseInt(this.GetForm['tipoSolicitud'].value);
-    model.idModalidad = this.GetForm['modalidad'].value;
-    model.idAreaInvestigacion = this.GetForm['areaInvestigacion'].value;
-    /* model.tiposComite = this.GetForm['tiposComite'].value; */
-    model.idEstadoSolicitud = this.GetForm['estadoSolicitud'].value;
+    model.idTipoSolicitud = parseInt(this.GetForm['tipoSolicitud'].value);
+    model.idModalidad = parseInt(this.GetForm['modalidad'].value);
+    model.idAreaInvestigacion = parseInt(this.GetForm['areaInvestigacion'].value);
+    model.idEstadoSolicitud = parseInt(this.GetForm['estadoSolicitud'].value);
     let IdTiposComites = this.GetForm['tiposComite'].value;
+
+    console.log(model);
+
 
     this.service.SaveRecord(model).subscribe({
       next: (data: SolicitudModel) => {
-        openGeneralMessageModal(generalData.SAVED_MESSAGE);
-        this.router.navigate(["/solicitud/listar-solicitud"]);
+        if (data.id) {
+          this.service.asociarTiposComiteSolicitud(data.id, IdTiposComites).subscribe({
+            next: () => {
+              console.log("sirvce");
+
+            }
+          })
+          openGeneralMessageModal(generalData.SAVED_MESSAGE);
+          this.router.navigate(["/solicitud/listar-solicitud"]);
+        }
       },
       error: (err: any) => {
         openGeneralMessageModal(generalData.ERROR_MESSAGE);

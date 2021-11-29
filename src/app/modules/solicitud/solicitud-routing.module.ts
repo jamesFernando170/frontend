@@ -19,6 +19,14 @@ const routes: Routes = [
     component: EliminarSolicitudComponent
   },
   {
+    path: "editar-solicitud/:id",
+    component: EditarSolicitudComponent
+  },
+  {
+    path: "eliminar-solicitud/:id",
+    component: EliminarSolicitudComponent
+  },
+  {
     path: "listar-solicitud",
     component: ListarSolicitudComponent
   },
