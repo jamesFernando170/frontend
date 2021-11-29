@@ -8,6 +8,7 @@ import { ListarSolicitudComponent } from './listar-solicitud/listar-solicitud.co
 import { EliminarSolicitudComponent } from './eliminar-solicitud/eliminar-solicitud.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { VincularProponenteComponent } from './vincular-proponente/vincular-proponente.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CrearSolicitudComponent,
     EditarSolicitudComponent,
     ListarSolicitudComponent,
-    EliminarSolicitudComponent
+    EliminarSolicitudComponent,
+    VincularProponenteComponent
   ],
   imports: [
     CommonModule,

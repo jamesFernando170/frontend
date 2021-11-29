@@ -4,6 +4,7 @@ import { CrearSolicitudComponent } from './crear-solicitud/crear-solicitud.compo
 import { EditarSolicitudComponent } from './editar-solicitud/editar-solicitud.component';
 import { EliminarSolicitudComponent } from './eliminar-solicitud/eliminar-solicitud.component';
 import { ListarSolicitudComponent } from './listar-solicitud/listar-solicitud.component';
+import { VincularProponenteComponent } from './vincular-proponente/vincular-proponente.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
     path: "listar-solicitud",
     component: ListarSolicitudComponent
   },
+  {
+    path: "vincular-proponente/:id",
+    component: VincularProponenteComponent
+  }
 ];
 
 @NgModule({

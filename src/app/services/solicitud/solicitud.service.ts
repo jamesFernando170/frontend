@@ -98,4 +98,15 @@ export class SolicitudService {
     });
   }
 
+  asociarProponeteSolicitud(id: number, IdProponentes: string): Observable<any> {
+    let nuevoArreglo = [];
+    for (let i = 0; i < IdProponentes.length; i++) {
+      nuevoArreglo.push(parseInt(IdProponentes[i]))
+    }
+    
+    return this.http.post(`${this.url}/asociar-solicitud-proponentes-trabajos/${id}`, { /* Agregar la funcion en el controlador de varios Tipos comite a solicitud */
+      arregloGenerico: nuevoArreglo
+    });
+  }
+
 }
