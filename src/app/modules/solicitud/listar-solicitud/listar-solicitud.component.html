@@ -23,9 +23,9 @@
         <th>
             Area investigación
         </th>
-        <!-- <th>
+        <th>
             Tipos comite
-        </th> -->
+        </th>
         <th>
             Estado solicitud
         </th>
@@ -48,21 +48,21 @@
                 {{r.descripcion}}
             </td>
             <td>
-                {{r.s_es_ts.nombre}}
+                {{r.s_es_ts?.nombre}}
             </td>
             <td>
-                {{r.s_tiene_m.nombre}}
+                {{r.s_tiene_m?.nombre}}
             </td>
             <td>
-                {{r.s_tiene_ai.nombre}}
+                {{r.s_tiene_ai?.nombre}}
             </td>
-            <!-- <td>
+            <td>
                 <ul>
-                    <li *ngFor="let c of r.tiposComite">{{c.nombre}}</li> <!-- objetos de tipos de comite -->
+                    <li *ngFor="let c of r.tiposComites">{{c.nombre}}</li>
                 </ul>
-            </td> -->
+            </td>
             <td>
-                {{r.s_tiene_es.nombre}}
+                {{r.s_tiene_es?.nombre}}
             </td>
             <td>
                 <a routerLink="/parametros/editar-solicitud/{{r.id}}" class="btn btn-warning orange">Editar</a>

@@ -18,5 +18,5 @@ export class SolicitudModel{
       s_tiene_es?: estadoSolicitudModel; //falta este modelo
       s_tiene_m?: ModalidadModel;
       s_tiene_ai?: AreaInvestigacionModel;
-      tiposComite?: TipoSolicitudModel[];
+      tiposComites?: TipoSolicitudModel[];
 }
