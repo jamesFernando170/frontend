@@ -1,46 +1,59 @@
 <div class="row">
     <form [formGroup]="form" class="col s12">
-      <div class="row">
-        <div class="input-field col s12">
-          <input formControlName="name" id="name" type="text" >
-          <label for="name">Fecha</label>
+        <div class="row">
+            <div class="input-field col s3">
+                <input formControlName="fecha" id="txtFecha" type="text">
+                <label for="txtFecha">Fecha</label>
+            </div>
+            <div class="input-field col s3">
+                <input formControlName="nombreTrabajo" id="txtNombreTrabajo" type="text">
+                <label for="txtNombreTrabajo">Nombre trabajo</label>
+            </div>
+            <div class="input-field col s3">
+                <input formControlName="descripcion" id="txtDescripcion" type="text">
+                <label for="txtDescripcion">Descripción</label>
+            </div>
+            <div class="input-field col s3">
+                <input formControlName="tipoSolicitud" id="txtTipoSolicitud" type="text">
+                <label for="txtTipoSolicitud">Tipo solicitud</label>
+            </div>
         </div>
-        <div class="input-field col s12">
-          <input formControlName="name" id="name" type="text" >
-          <label for="name">Nombre trabajo</label>
+
+        <div class="row">
+            <div class="input-field col s3">
+                <input formControlName="modalidad" id="txtModalidad" type="text">
+                <label for="txtModalidad">Modalidad</label>
+            </div>
+            <div class="input-field col s3">
+                <select id="selAreaInvestigacion">
+                    <!-- cargar las opciones desde la base de datos -->
+                    <option *ngFor = "let b of listaAreasInvestigacion" value="{{b.id}}">{{b.name}}</option> <!-- dibujar las opciones de solicitud a area de investigación -->
+                </select>
+                <label>Area de investigación</label>
+            </div>
+            <div class="input-field col s3">
+                <select id="selComite">
+                    <!-- cargar las opciones desde la base de datos -->
+                    <option *ngFor = "let c of listaComite" value="{{c.id}}">{{c.name}}</option> <!-- dibujar las opciones de solicitud a area de investigación -->
+                </select>
+                <label>Tipos de comite</label>
+            </div>
+            <!-- <div class="input-field col s3">
+                <input formControlName="tiposComite" id="txtTiposComite" type="text">
+                <label for="txtTiposComite">Tipos comite</label>
+            </div> -->
         </div>
-        <div class="input-field col s12">
-          <input formControlName="name" id="name" type="text" >
-          <label for="name">Descripción</label>
+        <div class="row">
+            <div class="input-field col s2">
+                <a routerLink="/solicitud/listar-solicitud" class="btn btn-warning red">
+                    Cancelar
+                </a>
+            </div>
+            <div class="input-field col s10">
+                <button (click)="SaveRecord()" class="btn btn-success">
+                    Guardar
+                </button>
+            </div>
         </div>
-        <div class="input-field col s12">
-          <input formControlName="name" id="name" type="text" >
-          <label for="name">Tipo </label>
-        </div>
-        <div class="input-field col s12">
-          <input formControlName="name" id="name" type="text" >
-          <label for="name">Nombre</label>
-        </div>
-        <div class="input-field col s12">
-          <input formControlName="name" id="name" type="text" >
-          <label for="name">Nombre</label>
-        </div>
-        <div class="input-field col s12">
-          <input formControlName="name" id="name" type="text" >
-          <label for="name">Nombre</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s2">
-            <a routerLink="/solicitud/listar-solicitud" class="btn btn-warning red">
-                Cancelar
-            </a>
-        </div>
-        <div class="input-field col s10">
-            <button (click)="SaveRecord()" class="btn btn-success">
-                Guardar
-            </button>
-        </div>
-      </div>
     </form>
-  </div>
+</div>
