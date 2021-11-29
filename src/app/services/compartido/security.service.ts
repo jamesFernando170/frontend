@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { credencialesCambiarClave } from 'src/app/models/credenciales-cambiar-clave.model';
+import { credencialesRecuperarClave } from 'src/app/models/credenciales-recuperar-clave.model';
 import { SessionData } from 'src/app/models/datos-sesion.model';
 import { generalData } from '../../config/general-data';
 import { userCredentialsModel } from '../../models/credenciales-usuario.model';
@@ -15,7 +17,7 @@ export class SecurityService {
 
   constructor(
     private http: HttpClient
-  ) { 
+  ) {
     this.IsThereActiveSession();
   }
 
@@ -28,18 +30,38 @@ export class SecurityService {
     }
   }
 
-  RefreshSessionData(data: SessionData){
+  RefreshSessionData(data: SessionData) {
     this.sessionDataSubject.next(data);
   }
 
-  GetSessionStatus(){
+  GetSessionStatus() {
     return this.sessionDataSubject.asObservable();
   }
 
   Login(modelo: userCredentialsModel): Observable<SessionData> {
+    console.log(modelo.username);
+
     return this.http.post<SessionData>(`${this.url}/identificar-usuario`, {
       usuario: modelo.username,
       clave: modelo.password
+    });
+  }
+
+  RecuperarClave(modelo: credencialesRecuperarClave) {
+    console.log(modelo.username);
+
+    return this.http.post(`${this.url}/recuperar-clave`, {
+      correo: modelo.username
+    });
+  }
+
+  cambiarClave(modelo: credencialesCambiarClave) {
+    console.log(modelo.user, modelo.passwordNew, modelo.password);
+
+    return this.http.post(`${this.url}/cambiar-clave`, {
+      id_usuario: modelo.user,
+      clave_actual: modelo.password,
+      nueva_clave: modelo.passwordNew
     });
   }
 }

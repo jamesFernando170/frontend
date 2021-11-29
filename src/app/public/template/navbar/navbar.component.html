@@ -1,6 +1,57 @@
+<!-- Dropdown Structure -->
 <nav>
+    <div class="nav-wrapper container">
+        <a routerLink="/home" class="brand-logo container">Validacion Trabajos Academicos</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            <li *ngIf="!session"><a routerLink="seguridad/login"><i class="material-icons">login</i></a></li>
+            <li *ngIf="session"><a class="dropdown-trigger" routerLink="/home" data-target="dropdown1"> Parametros <i
+                        class="material-icons right">arrow_drop_down</i></a></li>
+            <li *ngIf="session" class=""><a routerLink="seguridad/logout"><i class="material-icons">logout</i></a></li>
+            <li *ngIf="session" class=""><a routerLink="seguridad/cambio-clave"><i class="material-icons">account_circle</i></a></li>
+         <!--    <li><a href="sass.html"><i class="material-icons">search</i></a></li> -->
+
+        </ul>
+
+    </div>
+</nav>
+<ul id="dropdown1" class="dropdown-content">
+    <li *ngIf="session"><a routerLink="sass.html">Sass</a></li>
+    <li *ngIf="session"><a routerLink="badges.html">Components</a></li>
+    <li *ngIf="session"><a routerLink="collapsible.html">Javascript</a></li>
+    <li *ngIf="session"><a routerLink="mobile.html">Mobile</a></li>
+    <li *ngIf="session"><a routerLink="parametros/listar-facultad">Facultad</a></li>
+    <li *ngIf="session"><a routerLink="parametros/listar-area-investigacion">Area Investigacion</a></li>
+    <li *ngIf="session"><a routerLink="parametros/listar-modalidad">Modalidad</a></li>
+    <li *ngIf="session"><a routerLink="parametros/listar-proponente">Proponente</a></li>
+    <li *ngIf="session"><a routerLink="parametros/listar-departamento">Departamentos</a></li>
+    <li *ngIf="session"><a routerLink="parametros/listar-jurado">Jurados</a></li>
+    <li *ngIf="session"><a routerLink="parametros/listar-tipo-comite">Tipos comite</a></li>
+    <li *ngIf="session"><a routerLink="parametros/listar-tipo-solicitud">Tipos solicitud</a></li>
+    <li *ngIf="session"><a routerLink="parametros/listar-tipo-vinculacion">tipo-vinculacion</a></li>
+    <!--   <li *ngIf="session" class=""><a routerLink="seguridad/logout">Logout</a></li> -->
+</ul>
+
+<ul class="sidenav" id="mobile-demo">
+    <li *ngIf="session"><a routerLink="sass.html">Sass</a></li>
+    <li *ngIf="session"><a routerLink="badges.html">Components</a></li>
+    <li *ngIf="session"><a routerLink="collapsible.html">Javascript</a></li>
+    <li *ngIf="session"><a routerLink="mobile.html">Mobile</a></li>
+    <li *ngIf="session"><a routerLink="parametros/listar-facultad">Facultad</a></li>
+    <li *ngIf="session"><a routerLink="parametros/listar-area-investigacion">Area Investigacion</a></li>
+    <li *ngIf="session"><a routerLink="parametros/listar-modalidad">Modalidad</a></li>
+    <li *ngIf="session"><a routerLink="parametros/listar-proponente">Proponente</a></li>
+    <li *ngIf="session"><a routerLink="parametros/listar-departamento">Departamentos</a></li>
+    <li *ngIf="session"><a routerLink="parametros/listar-jurado">Jurados</a></li>
+    <li *ngIf="session"><a routerLink="parametros/listar-tipo-comite">Tipos comite</a></li>
+    <li *ngIf="session"><a routerLink="parametros/listar-tipo-solicitud">Tipos solicitud</a></li>
+    <li *ngIf="session"><a routerLink="parametros/listar-tipo-vinculacion">tipo-vinculacion</a></li>
+    <li *ngIf="session" class=""><a routerLink="seguridad/logout">Logout</a></li>
+</ul>
+
+<!-- <nav>
     <div class="nav-wrapper">
-        <a routerLink="/home" class="brand-logo">Inicio</a>
+        <a routerLink="/home" class="brand-logo container">Inicio</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
             <li *ngIf="!session"><a routerLink="seguridad/login">Login</a></li>
@@ -19,6 +70,13 @@
                 <li *ngIf="session"><a routerLink="parametros/listar-tipo-solicitud">Tipos solicitud</a></li>
                 <li *ngIf="session"><a routerLink="parametros/listar-tipo-vinculacion">tipo-vinculacion</a></li>
                 <li *ngIf="session" class=""><a routerLink="seguridad/logout">Logout</a></li>
+                <button class="btn btn-success container content-">
+                    <span class="material-icons">
+                        home
+                    </span>
+                    bton
+                </button>
+
             </ul>
             <a *ngIf="session" href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i
                     class="material-icons">menu</i></a>
@@ -32,4 +90,4 @@
     <li *ngIf="session"><a routerLink="collapsible.html">Javascript</a></li>
     <li *ngIf="session"><a routerLink="mobile.html">Mobile</a></li>
     <li *ngIf="!session"><a routerLink="seguridad/login">Login</a></li>
-</ul>
+</ul> -->

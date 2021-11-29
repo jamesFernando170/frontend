@@ -1,6 +1,9 @@
 <br />
-<a routerLink="/parametros/crear-jurado" class="btn btn-success">Nuevo Registro</a>
-<table class="table responsive-table">
+<div class="container">
+    <a routerLink="/parametros/crear-jurado" class="btn btn-success">Nuevo Registro</a>
+</div>
+
+<table class="table responsive-table striped container">
     <thead>
         <th>
             Id
@@ -43,11 +46,11 @@
                 &nbsp;<a routerLink="/parametros/eliminar-jurado/{{f.id}}" class="btn btn-warning red">Eliminar</a>
             </td>
         </tr>
-        <tr>
-            <td colspan="3">
-                <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
-            </td>
-        </tr>
     </tbody>
+    <tr>
+        <td colspan="3">
+            <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente">
+            </pagination-controls>
+        </td>
+    </tr>
 </table>
-

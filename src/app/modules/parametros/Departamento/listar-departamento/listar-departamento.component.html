@@ -1,44 +1,48 @@
 <br />
-<a routerLink="/parametros/crear-departamento" class="btn btn-success">Nuevo Registro</a>
-<table class="table responsive-table">
-    <thead>
-        <th>
-            Id
-        </th>
-        <th>
-            Nombre
-        </th>
-        <th>
-            Facultad
-        </th>
-        <th>
-            Acciones
-        </th>
-    </thead>
-    <tbody>
+<div class="container">
+    <a routerLink="/parametros/crear-departamento" class="btn btn-success">Nuevo Registro</a>
+    <table class="table responsive-table striped z-depht-1">
+        <thead>
+            <th>
+                Id
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Facultad
+            </th>
+            <th>
+                Acciones
+            </th>
+        </thead>
+        <tbody>
 
-        <tr *ngFor="let fa of recordList  | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }">
+            <tr
+                *ngFor="let fa of recordList  | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }">
 
-            <td>
-                {{fa.id}}
-            </td>
-            <td>
-                {{fa.nombre}}
-            </td>
-            <td>
-                {{fa.d_pertenece_f?.nombre}}
-            </td>
-            <td>
-                <a routerLink="/parametros/editar-departamento/{{fa.id}}" class="btn btn-warning orange">Editar</a>
-                &nbsp;<a routerLink="/parametros/eliminar-departamento/{{fa.id}}"
-                    class="btn btn-warning red">Eliminar</a>
-            </td>
-        </tr>
+                <td>
+                    {{fa.id}}
+                </td>
+                <td>
+                    {{fa.nombre}}
+                </td>
+                <td>
+                    {{fa.d_pertenece_f?.nombre}}
+                </td>
+                <td>
+                    <a routerLink="/parametros/editar-departamento/{{fa.id}}" class="btn btn-warning orange">Editar</a>
+                    &nbsp;<a routerLink="/parametros/eliminar-departamento/{{fa.id}}"
+                        class="btn btn-warning red">Eliminar</a>
+                </td>
+            </tr>
+
+        </tbody>
         <tr>
             <td colspan="3">
                 <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente">
                 </pagination-controls>
             </td>
         </tr>
-    </tbody>
-</table>
+    </table>
+</div>

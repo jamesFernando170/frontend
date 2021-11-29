@@ -11,7 +11,7 @@ import { SecurityService } from 'src/app/services/compartido/security.service';
 export class HeaderComponent implements OnInit {
 
   user_data: string = "";
-
+  session: boolean = false;
   subscription: Subscription = new Subscription();
 
   constructor(private securityServices: SecurityService) { }
@@ -23,6 +23,17 @@ export class HeaderComponent implements OnInit {
           if(data.usuario?.nombre){
             this.user_data = data.usuario?.nombre;
           }
+        },
+        error: (err) =>{
+          
+        }
+      }
+    );
+
+    this.subscription = this.securityServices.GetSessionStatus().subscribe(
+      {
+        next: (data: SessionData) => {
+           this.session = data.isLoggedIn;
         },
         error: (err) =>{
           

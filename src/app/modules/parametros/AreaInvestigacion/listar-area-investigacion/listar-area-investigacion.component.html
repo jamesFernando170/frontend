@@ -1,37 +1,44 @@
 <br />
-<a routerLink="/parametros/crear-area-investigacion" class="btn btn-success">Nuevo Registro</a>
-<table class="table responsive-table">
-    <thead>
-        <th>
-            Id
-        </th>
-        <th>
-            Nombre
-        </th>
-        <th>
-            Acciones
-        </th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let ai of recordList  | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }">
-            <td>
-                {{ai.id}}
-            </td>
-            <td>
-                {{ai.nombre}}
-            </td>
-            <td>
-                <a routerLink="/parametros/editar-area-investigacion/{{ai.id}}"
-                    class="btn btn-warning orange">Editar</a>
-                &nbsp;<a routerLink="/parametros/eliminar-area-investigacion/{{ai.id}}"
-                    class="btn btn-warning red">Eliminar</a>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3">
-                <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente">
-                </pagination-controls>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="container">
+    <div class="container">
+        <a routerLink="/parametros/crear-area-investigacion" class="btn btn-success">Nuevo Registro</a>
+    </div>
+
+    <table class="table responsive-table striped container">
+        <thead>
+            <th>
+                Id
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Acciones
+            </th>
+        </thead>
+        <tbody>
+            <tr
+                *ngFor="let ai of recordList  | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }">
+                <td>
+                    {{ai.id}}
+                </td>
+                <td>
+                    {{ai.nombre}}
+                </td>
+                <td>
+                    <a routerLink="/parametros/editar-area-investigacion/{{ai.id}}"
+                        class="btn btn-warning orange">Editar</a>
+                    &nbsp;<a routerLink="/parametros/eliminar-area-investigacion/{{ai.id}}"
+                        class="btn btn-warning red">Eliminar</a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente">
+                    </pagination-controls>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
