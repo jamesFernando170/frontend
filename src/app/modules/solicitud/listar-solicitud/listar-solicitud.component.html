@@ -1,7 +1,5 @@
 <br />
 <a routerLink="/solicitud/crear-solicitud" class="btn btn-success">Nuevo Registro</a>
-<!-- mirar si las direcciones son correctas -->
-
 <table class="table responsive-table">
     <thead>
         <th>
@@ -25,12 +23,12 @@
         <th>
             Area investigación
         </th>
-        <th>
-            Tipos comite
-        </th>
         <!-- <th>
-            Estado solicitud
+            Tipos comite
         </th> -->
+        <th>
+            Estado solicitud
+        </th>
         <th>
             Acciones
         </th>
@@ -50,23 +48,22 @@
                 {{r.descripcion}}
             </td>
             <td>
-                {{r.s_es_ts?.nombre}}
+                {{r.s_es_ts.nombre}}
             </td>
             <td>
-                {{r.modalidad?.nombre}}
+                {{r.s_tiene_m.nombre}}
             </td>
             <td>
-                {{r.areaInvestigacion?.nombre}}
+                {{r.s_tiene_ai.nombre}}
             </td>
-            <td>
+            <!-- <td>
                 <ul>
                     <li *ngFor="let c of r.tiposComite">{{c.nombre}}</li> <!-- objetos de tipos de comite -->
                 </ul>
-                <!-- {{r.tiposComite?.nombre}} -->
-            </td>
-            <!-- <td>
-                {{r.estadoSolicitud?.nombre}}
             </td> -->
+            <td>
+                {{r.s_tiene_es.nombre}}
+            </td>
             <td>
                 <a routerLink="/parametros/editar-solicitud/{{r.id}}" class="btn btn-warning orange">Editar</a>
                 <!-- mirar si las direcciones son correctas -->

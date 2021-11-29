@@ -76,4 +76,10 @@ export class SolicitudService {
       });
   }
 
+  asociarTiposComiteSolicitud(id: number, IdTiposComites: number[]): Observable<any> {
+    return this.http.post(`${this.url}/asociar-usuario-roles/${id}`, { /* Agregar la funcion en el controlador de varios Tipos comite a solicitud */
+      tiposComite: IdTiposComites
+    });
+  }
+  
 }

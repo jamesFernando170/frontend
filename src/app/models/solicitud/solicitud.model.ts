@@ -14,12 +14,9 @@ export class SolicitudModel{
       idEstadoSolicitud?: number; //buscarla por otro modo
       idModalidad?: number; //buscarla por otro modo
       idAreaInvestigacion?: number; //buscarla por otro modo
-      //tiposComites?: TiposComitem[]; // pueden manejarse de otra manera
       s_es_ts?: TipoSolicitudModel;
-      estadoSolicitud?: estadoSolicitudModel; //falta este modelo
-      modalidad?: ModalidadModel;
-      areaInvestigacion?: AreaInvestigacionModel;
+      s_tiene_es?: estadoSolicitudModel; //falta este modelo
+      s_tiene_m?: ModalidadModel;
+      s_tiene_ai?: AreaInvestigacionModel;
       tiposComite?: TipoSolicitudModel[];
-
-      
 }

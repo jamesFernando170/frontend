@@ -3,11 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { generalData } from 'src/app/config/general-data';
 import { AreaInvestigacionModel } from 'src/app/models/parametros/area-investigacion.model';
+import { estadoSolicitudModel } from 'src/app/models/parametros/estadoSolicitud.model';
 import { ModalidadModel } from 'src/app/models/parametros/modalidad.model';
 import { TipoComiteModel } from 'src/app/models/parametros/tipo-comite.model';
 import { TipoSolicitudModel } from 'src/app/models/parametros/tipo-solicitud.model';
 import { SolicitudModel } from 'src/app/models/solicitud/solicitud.model';
 import { AreaInvestigacionService } from 'src/app/services/parametros/area-investigacion.service';
+import { EstadoSolicitudService } from 'src/app/services/parametros/estado-solicitud.service';
 import { ModalidadService } from 'src/app/services/parametros/modalidad.service';
 import { TipoComiteService } from 'src/app/services/parametros/tipo-comite.service';
 import { TipoSolicitudService } from 'src/app/services/parametros/tipo-solicitud.service';
@@ -21,10 +23,12 @@ declare const InitSelectById: any;
   styleUrls: ['./crear-solicitud.component.css']
 })
 export class CrearSolicitudComponent implements OnInit {
+  
   listaAreasInvestigacion: AreaInvestigacionModel[] = []; // atributos para usar en el html, en la parte de listas desplegables
   listaComite: TipoComiteModel[] = [];// atributos para usar en el html, en la parte de listas desplegables
   listaModalidad: ModalidadModel[] = [];
   listaTipoSolicitud: TipoSolicitudModel[] = [];
+  listaEstadoSolicitud: estadoSolicitudModel[] = [];
   form: FormGroup = new FormGroup({});
 
   constructor(
@@ -34,7 +38,8 @@ export class CrearSolicitudComponent implements OnInit {
     private areaInvestigacionService: AreaInvestigacionService,
     private comiteService: TipoComiteService,
     private modalidadService: ModalidadService,
-    private tipoSolicitudService: TipoSolicitudService
+    private tipoSolicitudService: TipoSolicitudService,
+    private estadoSolicitudService: EstadoSolicitudService
   ) { }
 
   ngOnInit(): void {
@@ -92,6 +97,18 @@ export class CrearSolicitudComponent implements OnInit {
       }
     )
 
+    this.estadoSolicitudService.GetRecordList().subscribe(
+      {
+        next: (data: estadoSolicitudModel[]) => {
+          this.listaComite = data;
+          setTimeout(() => {
+            InitSelectById("selEstado");
+          }, 100);
+
+        }
+      }
+    )
+
   }
 
   CreateForm() {
@@ -103,6 +120,7 @@ export class CrearSolicitudComponent implements OnInit {
       modalidad: ["", [Validators.required]],
       areaInvestigacion: ["", [Validators.required]],
       tiposComite: ["", [Validators.required]],
+      estadoSolicitud: ["", [Validators.required]],
     });
   }
 
@@ -110,16 +128,16 @@ export class CrearSolicitudComponent implements OnInit {
     let model = new SolicitudModel();
     model.nombreTrabajo = this.GetForm['nombreTrabajo'].value;
     console.log(this.GetForm['tipoSolicitud'].value);
-    
     //model.archivo = this.GetForm['archivo'].value;//para poner el archivo
     model.fecha = this.GetForm['fecha'].value;
     model.descripcion = this.GetForm['descripcion'].value;
     model.idTipoSolicitud =parseInt(this.GetForm['tipoSolicitud'].value);
     model.idModalidad = this.GetForm['modalidad'].value;
     model.idAreaInvestigacion = this.GetForm['areaInvestigacion'].value;
-    model.tiposComite = this.GetForm['tiposComite'].value;
-    console.log(model.idTipoSolicitud);
-    
+    /* model.tiposComite = this.GetForm['tiposComite'].value; */
+    model.idEstadoSolicitud = this.GetForm['estadoSolicitud'].value;
+    let IdTiposComites = this.GetForm['tiposComite'].value;
+
     this.service.SaveRecord(model).subscribe({
       next: (data: SolicitudModel) => {
         openGeneralMessageModal(generalData.SAVED_MESSAGE);
