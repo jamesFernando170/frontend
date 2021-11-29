@@ -10,6 +10,10 @@ import { CrearDepartamentoComponent } from './Departamento/crear-departamento/cr
 import { EditarDepartamentoComponent } from './Departamento/editar-departamento/editar-departamento.component';
 import { EliminarDepartamentoComponent } from './Departamento/eliminar-departamento/eliminar-departamento.component';
 import { ListarDepartamentoComponent } from './Departamento/listar-departamento/listar-departamento.component';
+import { CrearEstadoSolicitudComponent } from './EstadoSolicitud/crear-estado-solicitud/crear-estado-solicitud.component';
+import { EditarEstadoSolicitudComponent } from './EstadoSolicitud/editar-estado-solicitud/editar-estado-solicitud.component';
+import { EliminarEstadoSolicitudComponent } from './EstadoSolicitud/eliminar-estado-solicitud/eliminar-estado-solicitud.component';
+import { ListarEstadoSolicitudComponent } from './EstadoSolicitud/listar-estado-solicitud/listar-estado-solicitud.component';
 import { CrearGfacultadComponent } from './Facultad/crear-gfacultad/crear-gfacultad.component';
 import { EditarFacultadComponent } from './Facultad/editar-facultad/editar-facultad.component';
 import { EliminarFacultadComponent } from './Facultad/eliminar-facultad/eliminar-facultad.component';
@@ -249,6 +253,31 @@ const routes: Routes = [
     path: "listar-tipo-vinculacion",
     component: ListarTipoVinculacionComponent
   },
+  // Estado de Solicitud
+  {
+    path: "crear-estado-solicitud",
+    component: CrearEstadoSolicitudComponent
+  },
+  {
+    path: "editar-estado-solicitud/:id",
+    component: EditarEstadoSolicitudComponent
+  }, 
+  {
+    path: "eliminar-estado-solicitud/:id",
+    component: EliminarEstadoSolicitudComponent
+  },
+  {
+    path: "editar-estado-solicitud",
+    component: EditarEstadoSolicitudComponent
+  },
+  {
+    path: "eliminar-estado-solicitud",
+    component: EliminarEstadoSolicitudComponent
+  },
+  {
+    path: "listar-estado-solicitud",
+    component: ListarEstadoSolicitudComponent
+  }
 ];
 
 @NgModule({

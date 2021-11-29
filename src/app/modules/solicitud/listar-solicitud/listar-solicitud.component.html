@@ -1,7 +1,5 @@
 <br />
 <a routerLink="/solicitud/crear-solicitud" class="btn btn-success">Nuevo Registro</a>
-<!-- mirar si las direcciones son correctas -->
-
 <table class="table responsive-table">
     <thead>
         <th>
@@ -28,9 +26,9 @@
         <th>
             Tipos comite
         </th>
-        <!-- <th>
+        <th>
             Estado solicitud
-        </th> -->
+        </th>
         <th>
             Acciones
         </th>
@@ -53,24 +51,24 @@
                 {{r.s_es_ts?.nombre}}
             </td>
             <td>
-                {{r.modalidad?.nombre}}
+                {{r.s_tiene_m?.nombre}}
             </td>
             <td>
-                {{r.areaInvestigacion?.nombre}}
+                {{r.s_tiene_ai?.nombre}}
             </td>
             <td>
                 <ul>
-                    <li *ngFor="let c of r.tiposComite">{{c.nombre}}</li> <!-- objetos de tipos de comite -->
+                    <li *ngFor="let c of r.tiposComites">{{c.nombre}}</li>
                 </ul>
-                <!-- {{r.tiposComite?.nombre}} -->
             </td>
-            <!-- <td>
-                {{r.estadoSolicitud?.nombre}}
-            </td> -->
             <td>
-                <a routerLink="/parametros/editar-solicitud/{{r.id}}" class="btn btn-warning orange">Editar</a>
+                {{r.s_tiene_es?.nombre}}
+            </td>
+            <td>
+                <!-- <a routerLink="/solicitud/editar-solicitud/{{r.id}}" class="btn btn-warning orange">Editar</a> -->
                 <!-- mirar si las direcciones son correctas -->
-                &nbsp;<a routerLink="/parametros/eliminar-solicitud/{{r.id}}" class="btn btn-warning red">Eliminar</a>
+                <a routerLink="/solicitud/vincular-proponente/{{r.id}}" class="btn btn-green">Vincular Proponente</a>
+                &nbsp;<a routerLink="/solicitud/eliminar-solicitud/{{r.id}}" class="btn btn-warning red">Eliminar</a>
                 <!-- mirar si las direcciones son correctas -->
             </td>
         </tr>

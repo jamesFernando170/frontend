@@ -72,7 +72,7 @@ export class CrearProponenteComponent implements OnInit {
     this.service.SaveRecord(model).subscribe({
       next: (data: ProponenteModel) =>{
         openGeneralMessageModal(generalData.SAVED_MESSAGE);
-        this.router.navigate(["/parametros/listar-departamento"]);
+        this.router.navigate(["/parametros/listar-proponente"]);
       },
       error: (err: any) => {
         openGeneralMessageModal(generalData.ERROR_MESSAGE);
