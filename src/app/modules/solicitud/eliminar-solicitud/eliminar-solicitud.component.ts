@@ -45,7 +45,7 @@ export class EliminarSolicitudComponent implements OnInit {
           this.nombreTrabajo = data.nombreTrabajo;
           this.descripcion = data.descripcion;
           this.fecha = data.fecha;
-          this.archivo = "";
+          this.archivo = "   ";
           this.idAreaInvestigacion = data.idAreaInvestigacion;
           this.idEstadoSolicitud = data.idEstadoSolicitud;
           this.idModalidad = data.idModalidad;

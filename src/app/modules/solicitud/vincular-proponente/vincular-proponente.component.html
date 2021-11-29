@@ -1,0 +1,27 @@
+<br>
+<div class="row">
+    <form [formGroup]="form" class="col s12">
+        <div class="row">
+            <div class="input-field col s3">
+                <strong> Nombre trabajo: {{nombreTrabajo}}</strong>
+            </div>
+            <div class="input-field col s3">
+                <select multiple formControlName="proponentes" id="selProponente">
+                    <option *ngFor = "let c of listaEstadoSolicitud" value="{{c.id}}">{{c.nombre}}</option> <!-- dibujar las opciones de solicitud a area de investigación -->
+                </select>
+                <label>Tipos de comite</label>
+        </div>
+        <div class="row">
+            <div class="input-field col s2">
+                <a routerLink="/solicitud/listar-solicitud" class="btn btn-warning red">
+                    Cancelar
+                </a>
+            </div>
+            <div class="input-field col s10">
+                <button (click)="SaveRecord()" class="btn btn-success">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
