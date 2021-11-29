@@ -127,6 +127,7 @@ export class CrearSolicitudComponent implements OnInit {
       modalidad: ["", [Validators.required]],
       areaInvestigacion: ["", [Validators.required]],
       tiposComite: ["", [Validators.required]],
+      estadoSolicitud: ["", [Validators.required]],
       archivo:["", [Validators.required]]//archivo que se carga 
     });
   }
@@ -144,6 +145,8 @@ export class CrearSolicitudComponent implements OnInit {
     console.log(this.GetForm['tipoSolicitud'].value);
     
     model.archivo = this.GetForm['archivo'].value;//para poner el archivo
+    console.log(this.GetForm['archivo'].value);
+    
     model.fecha = this.GetForm['fecha'].value;
     model.descripcion = this.GetForm['descripcion'].value;
     model.idTipoSolicitud = parseInt(this.GetForm['tipoSolicitud'].value);
@@ -195,7 +198,11 @@ export class CrearSolicitudComponent implements OnInit {
     //lo envío al servicio 
     this.service.UploadFile(formData).subscribe({
       next: (data: UploadedFileModel) =>{
+        console.log(data.filename);
+        
         this.form.controls["archivo"].setValue(data.filename)
+        console.log(this.form.controls["archivo"].value);
+        
         this.uploadedFilename = data.filename;
         this.uploadedFile = true;
       }

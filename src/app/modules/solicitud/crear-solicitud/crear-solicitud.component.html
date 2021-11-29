@@ -5,10 +5,10 @@
                 <img class="defaul-archivo" src="/assets/img/archivos/defaul-archivo.png" />
             </div>
             <div class="row">
-                <dic class="col s12 center-aline">
+                <div class="col s12 center-aline">
                     <input class="btn btn-warning orange" type="file" value="Seleccionar" (change)="OnchangeInputFile($event)"/>
-                    &nbsp;<button (click="UpLoadArchivo()") class="btn">Cargar Archivo</button>
-                </dic>
+                    &nbsp;<button (click)="UpLoadArchivo()" class="btn">Cargar Archivo</button>
+                </div>
             </div>
         </div>
     </div>
@@ -18,7 +18,7 @@
 
 <div class="row">
     <form [formGroup]="form" class="col s12">
-        <input type="text" formControlArchivo= "archivo" /> <!-- no me apunta aun-->
+        <input type="text" formControlName= "archivo" /> <!-- no me apunta aun-->
         <div class="row">
             <div class="input-field col s3">
                 <input formControlName="fecha" id="txtFecha" type="text">
