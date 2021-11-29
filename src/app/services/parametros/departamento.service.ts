@@ -12,7 +12,7 @@ export class DepartamentoService {
 
   url: string = generalData.BUSSINES_URL;
   token: string = "";
-  filter: string = `?filter={"include":[{"relation":"facultad"}]}`;
+  filter: string = `?filter={"include":[{"relation":"d_pertenece_f"}]}`;
 
   constructor(
     private http: HttpClient,
@@ -22,6 +22,8 @@ export class DepartamentoService {
   }
 
   GetRecordList(): Observable<DepartamentoModel[]>{
+    console.log(this.http.get<DepartamentoModel[]>(`${this.url}/departamentos${this.filter}`));
+    
     return this.http.get<DepartamentoModel[]>(`${this.url}/departamentos${this.filter}`);
   }
 

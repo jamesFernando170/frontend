@@ -18,10 +18,10 @@ import {HttpClientModule} from '@angular/common/http'
 @NgModule({
   declarations: [
     AppComponent,
-    CrearProponenteComponent,
+    /* CrearProponenteComponent,
     ListarProponenteComponent,
     EditarProponenteComponent,
-    EliminarProponenteComponent,
+    EliminarProponenteComponent, */
     HeaderComponent,
     FooterComponent,
     NavbarComponent,

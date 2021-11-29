@@ -26,6 +26,9 @@ export class ListarDepartamentoComponent implements OnInit {
   GetRecordList(){
     this.service.GetRecordList().subscribe({
       next: (data: DepartamentoModel[]) => {
+        /* console.log(data);
+        console.log(data[0].d_pertenece_f?.nombre); */
+        
         this.recordList = data;
         this.total = this.recordList.length;
       }

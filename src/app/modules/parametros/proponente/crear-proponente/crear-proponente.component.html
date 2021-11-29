@@ -1,1 +1,46 @@
-<p>crear-proponente works!</p>
+<div class="row">
+    <form [formGroup]="form" class="col s12">
+        <div class="row">
+            <div class="input-field col s6">
+                <input formControlName="primerNombre" id="primerNombre" type="text">
+                <label for="nombre">Primer Nombre</label>
+            </div>
+            <div class="input-field col s6">
+                <input formControlName="segundoNombre" id="segundoNombre" type="text">
+                <label for="nombre">Segundo Nombre</label>
+            </div>
+            <div class="input-field col s6">
+                <input formControlName="primerApellido" id="primerApellido" type="text">
+                <label for="nombre">Primer Apellido</label>
+            </div>
+            <div class="input-field col s6">
+                <input formControlName="segundoApellido" id="segundoApellido" type="text">
+                <label for="nombre">Segundo Apellido</label>
+            </div>
+            <div class="input-field col s6">
+                <input formControlName="correo" id="correo" type="text">
+                <label for="nombre">Correo</label>
+            </div>
+            <div class="input-field col s6">
+                <input formControlName="telefono" id="telefono" type="text">
+                <label for="nombre">Telefono</label>
+            </div>
+            <div class="input-field col s6">
+                <input formControlName="fotografia" id="fotografia" type="text">
+                <label for="nombre">fotografia</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s2">
+                <a routerLink="/parametros/listar-proponente" class="btn btn-warning red">
+                    Cancelar
+                </a>
+            </div>
+            <div class="input-field col s10">
+                <button (click)="SaveRecord()" class="btn btn-success">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

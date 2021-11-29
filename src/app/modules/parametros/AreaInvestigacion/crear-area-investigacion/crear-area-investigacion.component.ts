@@ -40,7 +40,7 @@ export class CrearAreaInvestigacionComponent implements OnInit {
     this.service.SaveRecord(model).subscribe({
       next: (data: AreaInvestigacionModel) => {
         openGeneralMessageModal(generalData.SAVED_MESSAGE);
-        this.router.navigate(["/parametros/listar-facultad"]);
+        this.router.navigate(["/parametros/listar-area-investigacion"]);
       },
       error: (err: any) => {
         openGeneralMessageModal(generalData.ERROR_MESSAGE);

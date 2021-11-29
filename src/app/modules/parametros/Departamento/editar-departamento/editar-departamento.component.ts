@@ -39,6 +39,8 @@ export class EditarDepartamentoComponent implements OnInit {
       {
         next: (data: FacultadModel[]) => {
           this.facultadList = data;
+          console.log(this.facultadList);
+          
           setTimeout(() => {
             InitSelectById("selFacultad");
           }, 100);

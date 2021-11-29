@@ -1,5 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { CrearAreaInvestigacionComponent } from './AreaInvestigacion/crear-area-investigacion/crear-area-investigacion.component';
 import { EditarAreaInvestigacionComponent } from './AreaInvestigacion/editar-area-investigacion/editar-area-investigacion.component';
 import { EliminarAreaInvestigacionComponent } from './AreaInvestigacion/eliminar-area-investigacion/eliminar-area-investigacion.component';
@@ -68,6 +70,13 @@ const routes: Routes = [
     component: CrearDepartamentoComponent
   },
   {
+    path: "editar-departamento/:id",
+    component: EditarDepartamentoComponent
+  }, {
+    path: "eliminar-departamento/:id",
+    component: EliminarDepartamentoComponent
+  },
+  {
     path: "editar-departamento",
     component: EditarDepartamentoComponent
   },
@@ -116,6 +125,13 @@ const routes: Routes = [
   {
     path: "crear-modalidad",
     component: CrearModalidadComponent
+  },
+  {
+    path: "editar-modalidad/:id",
+    component: EditarModalidadComponent
+  }, {
+    path: "eliminar-modalidad/:id",
+    component: EliminarModalidadComponent
   },
   {
     path: "editar-modalidad",

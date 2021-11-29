@@ -27,6 +27,9 @@ export class ListarModalidadComponent implements OnInit {
   GetRecordList() {
     this.service.GetRecordList().subscribe({
       next: (data: ModalidadModel[]) => {
+        console.log(data);
+        console.log(data[0].id);
+        
         this.recordList = data;
         this.total = this.recordList.length;
       }

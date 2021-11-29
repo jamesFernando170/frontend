@@ -11,6 +11,11 @@ import { EditarUsuarioComponent } from './user/editar-usuario/editar-usuario.com
 import { ListarUsuarioComponent } from './user/listar-usuario/listar-usuario.component';
 import { EliminarUsuarioComponent } from './user/eliminar-usuario/eliminar-usuario.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CrearRolComponent } from './Rol/crear-rol/crear-rol.component';
+import { EditarRolComponent } from './Rol/editar-rol/editar-rol.component';
+import { EliminarRolComponent } from './Rol/eliminar-rol/eliminar-rol.component';
+import { ListarRolComponent } from './Rol/listar-rol/listar-rol.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -22,13 +27,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CrearUsuarioComponent,
     EditarUsuarioComponent,
     ListarUsuarioComponent,
-    EliminarUsuarioComponent
+    EliminarUsuarioComponent,
+    CrearRolComponent,
+    EditarRolComponent,
+    EliminarRolComponent,
+    ListarRolComponent
   ],
   imports: [
     CommonModule,
     SeguridadRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ]
 })
 export class SeguridadModule { }

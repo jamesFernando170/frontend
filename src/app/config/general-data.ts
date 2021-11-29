@@ -4,7 +4,7 @@ export namespace generalData{
     export const INVALID_FORM_MESSAGE = "fORMULARIO INVALIDO";
     export const VALID_FORM_MESSAGE = "fORMULARIO OK";
     export const ADMIN_USER_URL = "http://localhost:3002";
-    export const BUSSINES_URL = "http://localhost:3001";
+    export const BUSSINES_URL = "http://localhost:3000";
     export const SAVED_MESSAGE = "Registro almacenado";
     export const REMOVE_MESSAGE = "Registro eliminado";
     export const ERROR_MESSAGE = "Error en el backend";

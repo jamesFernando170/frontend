@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { generalData } from 'src/app/config/general-data';
 import { AreaInvestigacionModel } from 'src/app/models/parametros/area-investigacion.model';
+import { AreaInvestigacionService } from 'src/app/services/parametros/area-investigacion.service';
 import { FacultadService } from 'src/app/services/parametros/facultad.service';
 
 declare const openGeneralMessageModal: any;
@@ -14,12 +15,13 @@ declare const openGeneralMessageModal: any;
 })
 export class EditarAreaInvestigacionComponent implements OnInit {
 
+  areaInvestigacionList : AreaInvestigacionModel[] = [];
   form: FormGroup = new FormGroup({});
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private service: FacultadService,
+    private service: AreaInvestigacionService,
     private route: ActivatedRoute
   ) { }
 
@@ -50,7 +52,7 @@ export class EditarAreaInvestigacionComponent implements OnInit {
     this.service.EditRecord(model).subscribe({
       next: (data: AreaInvestigacionModel) =>{
         openGeneralMessageModal(generalData.SAVED_MESSAGE);
-        this.router.navigate(["/parametros/editar-area-investigacion"]);
+        this.router.navigate(["/parametros/listar-area-investigacion"]);
       },
       error: (err: any) => {
         openGeneralMessageModal(generalData.ERROR_MESSAGE);

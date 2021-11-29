@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { generalData } from 'src/app/config/general-data';
 import { ModalidadModel } from 'src/app/models/parametros/modalidad.model';
 import { FacultadService } from 'src/app/services/parametros/facultad.service';
+import { ModalidadService } from 'src/app/services/parametros/modalidad.service';
 
 declare const openGeneralMessageModal: any;
 
@@ -18,7 +19,7 @@ export class EliminarModalidadComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private service: FacultadService,
+    private service: ModalidadService,
     private route: ActivatedRoute
   ) { }
 
@@ -43,7 +44,7 @@ export class EliminarModalidadComponent implements OnInit {
     this.service.RemoveRecord(this.id).subscribe({
       next: (data: ModalidadModel) =>{
         openGeneralMessageModal(generalData.REMOVE_MESSAGE);
-        this.router.navigate(["/parametros/listar-facultad"]);
+        this.router.navigate(["/parametros/eliminar-modalidad"]);
       },
       error: (err: any) => {
         openGeneralMessageModal(generalData.ERROR_MESSAGE);
