@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { generalData } from 'src/app/config/general-data';
-import { UsuarioModel } from 'src/app/models/usuario/usuario.model';
-import { UsuarioService } from 'src/app/services/usuarios/usuario.service';
+import { RolModel } from 'src/app/models/usuario/rol.model';
+import { roleservice } from 'src/app/services/usuarios/rol.service';
 
 @Component({
-  selector: 'app-listar-usuario',
-  templateUrl: './listar-usuario.component.html',
-  styleUrls: ['./listar-usuario.component.css']
+  selector: 'app-listar-rol',
+  templateUrl: './listar-rol.component.html',
+  styleUrls: ['./listar-rol.component.css']
 })
-export class ListarUsuarioComponent implements OnInit {
+export class ListarRolComponent implements OnInit {
 
   pageSize: number = generalData.RECORDS_BY_PAGE;
   p: number = 1;
   total: number = 0;
-  recordList: UsuarioModel[] = [];
+  recordList: RolModel[] = [];
 
   constructor(
-    private service: UsuarioService
+    private service: roleservice
   ) { }
 
   ngOnInit(): void {
@@ -25,7 +25,7 @@ export class ListarUsuarioComponent implements OnInit {
 
   GetRecordList(){
     this.service.GetRecordList().subscribe({
-      next: (data:  UsuarioModel[]) => {
+      next: (data: RolModel[]) => {
         this.recordList = data;
         this.total = this.recordList.length;
       }

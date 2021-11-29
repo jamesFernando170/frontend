@@ -1,1 +1,80 @@
-<p>listar-usuario works!</p>
+<br />
+<a routerLink="/seguridad/crear-usuario" class="btn btn-success">Nuevo Registro</a>
+<table class="table responsive-table">
+    <thead>
+        <th>
+            Id
+        </th>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Apellidos
+        </th>
+        <th>
+            Documento
+        </th>
+        <th>
+            Fecha de Nacimiento
+        </th>
+        <th>
+            Celular
+        </th>
+        <th>
+            Correo
+        </th>
+        <th>
+            Estado
+        </th>
+        <th>
+            Roles
+        </th>
+        <th>
+            Acciones
+        </th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let us of recordList  | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }">
+            <td>
+                {{us.id}}
+            </td>
+            <td>
+                {{us.nombre}}
+            </td>
+            <td>
+                {{us.apellidos}}
+            </td>
+            <td>
+                {{us.documento}}
+            </td>
+            <td>
+                {{us.fecha_nacimiento}}
+            </td>
+            <td>
+                {{us.celular}}
+            </td>
+            <td>
+                {{us.correo}}
+            </td>
+            <td>
+                <span *ngIf="us.estado">Activo</span>
+                <span *ngIf="!us.estado">Inactivo</span>
+            </td>
+            <td>
+                <ul>
+                    <li *ngFor="let r of us.roles" value="r._id">{{r.nombre}}</li>
+                </ul>
+            </td>
+            <td>
+                <a routerLink="/seguridad/editar-usuario/{{us.id}}" class="btn btn-warning orange">Editar</a>
+                &nbsp;<a routerLink="/seguridad/eliminar-usuario/{{us.id}}" class="btn btn-warning red">Eliminar</a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
