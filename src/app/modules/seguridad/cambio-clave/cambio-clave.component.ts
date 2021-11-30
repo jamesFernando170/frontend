@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MD5 } from 'crypto-js';
 import { generalData } from 'src/app/config/general-data';
 import { credencialesCambiarClave } from 'src/app/models/credenciales-cambiar-clave.model';
+import { UsuarioModel } from 'src/app/models/usuario/usuario.model';
 import { LocalStorageService } from 'src/app/services/compartido/local-storage.service';
 import { SecurityService } from 'src/app/services/compartido/security.service';
 
@@ -41,22 +42,32 @@ export class CambioClaveComponent implements OnInit {
     if (this.form.invalid) {
       openGeneralMessageModal(generalData.INVALID_FORM_MESSAGE)
     } else {
-      let modelo = new credencialesCambiarClave(); // Modelo donde podremos utilizar para cojer la informacion que viene desde el login
-      modelo.user = this.GetForm['username'].value;
-      modelo.password = this.GetForm['password'].value;
-      modelo.passwordNew = this.GetForm['passwordNew'].value;
-      console.log(modelo.user);
+      this.securityServices.GetUsuario(this.GetForm['username'].value).subscribe({
+        next: (data: UsuarioModel) => {
+          if (data) {
+            let modelo = new credencialesCambiarClave(); // Modelo donde podremos utilizar para cojer la informacion que viene desde el login
+            modelo.user = data._id;
+            modelo.password = MD5(this.GetForm['password'].value).toString();
+            modelo.passwordNew = MD5(this.GetForm['passwordNew'].value).toString();
+            console.log(modelo);
 
-      this.securityServices.cambiarClave(modelo).subscribe({
-        next: () => {
-          openGeneralMessageModal(generalData.PASSWORD_CHANGE)
-          this.router.navigate(["/home"])
-        },
-        error: (error: any) => {
-          openGeneralMessageModal(generalData.GENERAL_ERROR_MESSAGE)
+            this.securityServices.cambiarClave(modelo).subscribe({
+              next: () => {
+                openGeneralMessageModal(generalData.PASSWORD_CHANGE)
+                this.router.navigate(["/home"])
+              },
+              error: (error: any) => {
+                openGeneralMessageModal(generalData.GENERAL_ERROR_MESSAGE)
+              }
+            });
+          }
         }
       });
+
+
     }
+
+
   }
 
   get GetForm() {

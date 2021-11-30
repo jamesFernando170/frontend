@@ -1,5 +1,25 @@
+<br>
+<div class="row">
+    <div class="col s12">
+        <div class="row">
+            <div class="col s12 center">
+                <img *ngIf="!uploadedFile" class="defaul-archivo" src="/assets/img/archivos/yoda.jpg" />
+                <img *ngIf="uploadedFile" class="defaul-archivo" src="{{url}}/archivo/1/{{uploadedFilename}}" />
+            </div>
+            <div class="row">
+                <div class="col s12 center">
+                    <input class="btn btn-warning orange" type="file" value="Seleccionar"
+                        (change)="OnchangeInputFile($event)" />
+                    &nbsp;<button (click)="UpLoadArchivo()" class="btn">Cargar Archivo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="row">
     <form [formGroup]="form" class="col s12">
+        <input type="text" formControlName="fotografia" />
         <div class="row">
             <div class="input-field col s6">
                 <input formControlName="primerNombre" id="primerNombre" type="text">
@@ -26,11 +46,7 @@
                 <label for="nombre">Telefono</label>
             </div>
             <div class="input-field col s6">
-                <input formControlName="fotografia" id="fotografia" type="text">
-                <label for="nombre">fotografia</label>
-            </div>
-            <div class="input-field col s6">
-                <select formControlName="idtipoVinculacion" id="selTipoVinculacion">
+                <select formControlName="idTipoVinculacion" id="selTipoVinculacion">
                     <option *ngFor="let f of tipoVinculacionList " value="{{f.id}}">{{f.nombreTipo}}</option>
                 </select>
                 <label>Tipo vinculacion</label>

@@ -77,7 +77,7 @@ export class SolicitudService {
 
   RemoveRecord(id: number): Observable<any> {
     console.log(id);
-    
+
     return this.http.delete(
       `${this.url}/solicituds/${id}`,
       {
@@ -88,7 +88,7 @@ export class SolicitudService {
   }
 
   //subir el file
-  UploadFile(formData: FormData): Observable<UploadedFileModel>{
+  UploadFile(formData: FormData): Observable<UploadedFileModel> {
     return this.http.post<UploadedFileModel>(
       `${this.url}/CargarDocumentoSolicitud`, //apunta al cargar documento de solicitud
       formData,
@@ -97,26 +97,26 @@ export class SolicitudService {
           Authorization: `Bearer ${this.token}`
         })
       });
-    }
+  }
   asociarTiposComiteSolicitud(id: number, IdTiposComites: string[]): Observable<any> {
     let nuevoArreglo = [];
     for (let i = 0; i < IdTiposComites.length; i++) {
       nuevoArreglo.push(parseInt(IdTiposComites[i]))
     }
     console.log(nuevoArreglo);
-    
+
     return this.http.post(`${this.url}/asociar-solicitud-comites/${id}`, { /* Agregar la funcion en el controlador de varios Tipos comite a solicitud */
       arregloGenerico: nuevoArreglo
     });
   }
-  
+
 
   asociarProponeteSolicitud(id: number, IdProponentes: string): Observable<any> {
     let nuevoArreglo = [];
     for (let i = 0; i < IdProponentes.length; i++) {
       nuevoArreglo.push(parseInt(IdProponentes[i]))
     }
-    
+
     return this.http.post(`${this.url}/asociar-solicitud-proponentes-trabajos/${id}`, { /* Agregar la funcion en el controlador de varios Tipos comite a solicitud */
       arregloGenerico: nuevoArreglo
     });

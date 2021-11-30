@@ -59,15 +59,16 @@ export class SecurityService {
   cambiarClave(modelo: credencialesCambiarClave) {
     console.log(modelo.user, modelo.passwordNew, modelo.password);
 
-    return this.http.post(`${this.url}/cambiar-clave`,{
+    return this.http.post(`${this.url}/cambiar-clave`, {
       id_usuario: modelo.user,
       clave_actual: modelo.password,
       nueva_clave: modelo.passwordNew
     });
   }
 
-  GetUsuario(correo: string) {
-    return this.http.get<UsuarioModel>(`${this.url}usuarios-correo/${correo}`);
+  GetUsuario(correo: string): Observable<UsuarioModel> {
+
+    return this.http.get<UsuarioModel>(`${this.url}/usuarios-correo/${correo}`);
   }
 
 }

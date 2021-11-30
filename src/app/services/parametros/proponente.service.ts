@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { generalData } from 'src/app/config/general-data';
 import { ProponenteModel } from 'src/app/models/parametros/proponente.model';
+import { UploadedFileModel } from 'src/app/models/solicitud/uploaded.file.model';
 import { LocalStorageService } from '../compartido/local-storage.service';
 
 @Injectable({
@@ -66,6 +67,17 @@ export class ProponenteService {
   RemoveRecord(id: number): Observable<any> {
     return this.http.delete(
       `${this.url}/proponente-trabajos/${id}`,
+      {
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${this.token}`
+        })
+      });
+  }
+
+  UploadFile(formData: FormData): Observable<UploadedFileModel> {
+    return this.http.post<UploadedFileModel>(
+      `${this.url}/CargarImagenPersona`, //apunta al imagen documento de solicitud
+      formData,
       {
         headers: new HttpHeaders({
           Authorization: `Bearer ${this.token}`

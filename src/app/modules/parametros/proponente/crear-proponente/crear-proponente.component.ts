@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { generalData } from 'src/app/config/general-data';
 import { ProponenteModel } from 'src/app/models/parametros/proponente.model';
 import { TipoVinculacionModel } from 'src/app/models/parametros/tipo-vinculacion.model';
+import { UploadedFileModel } from 'src/app/models/solicitud/uploaded.file.model';
 import { ProponenteService } from 'src/app/services/parametros/proponente.service';
 import { TipoVinculacionService } from 'src/app/services/parametros/tipo-vinculacion.service';
 
@@ -19,7 +20,12 @@ export class CrearProponenteComponent implements OnInit {
 
   tipoVinculacionList: TipoVinculacionModel[] = [];
   form: FormGroup = new FormGroup({});
-  
+  formFile: FormGroup = new FormGroup({});//para los archivos
+
+  url: string = generalData.BUSSINES_URL;
+  uploadedFilename?: string = "";
+  uploadedFile: boolean = false;
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -29,7 +35,9 @@ export class CrearProponenteComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
+    this.CreateFormFile();
     this.GetOptionsToSelects();
+
   }
 
   GetOptionsToSelects() {
@@ -56,11 +64,12 @@ export class CrearProponenteComponent implements OnInit {
       idFacultad: ["", [Validators.required]],
       correo: ["", [Validators.required]],
       telefono: ["", [Validators.required]],
-      fotografia: ["", [Validators.required]]
+      fotografia: ["", [Validators.required]],
+      idTipoVinculacion: ["", [Validators.required]]
     });
   }
 
-  SaveRecord(){
+  SaveRecord() {
     let model = new ProponenteModel();
     model.primerNombre = this.GetForm['primerNombre'].value;
     model.segundoNombre = this.GetForm['segundoNombre'].value;
@@ -69,8 +78,9 @@ export class CrearProponenteComponent implements OnInit {
     model.correo = this.GetForm['correo'].value;
     model.celular = this.GetForm['telefono'].value;
     model.fotografia = this.GetForm['fotografia'].value;
+    model.idTipoVinculacion = this.GetForm['idTipoVinculacion'].value;
     this.service.SaveRecord(model).subscribe({
-      next: (data: ProponenteModel) =>{
+      next: (data: ProponenteModel) => {
         openGeneralMessageModal(generalData.SAVED_MESSAGE);
         this.router.navigate(["/parametros/listar-proponente"]);
       },
@@ -85,4 +95,37 @@ export class CrearProponenteComponent implements OnInit {
   }
 
 
+  //disparador del cambio 
+  OnchangeInputFile(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.formFile.controls["file"].setValue(file);//asigno el archivo
+    }
+  }
+
+  //Subimos el archivo cargado
+  UpLoadArchivo() {
+    //generar un fornData pero no en HTML, sino por TS
+    const formData = new FormData();
+    formData.append("file", this.formFile.controls["file"].value) //el primer "file", mismo nombre de documentos en keys del backend...obtengo el archivo
+
+    //lo envío al servicio 
+    this.service.UploadFile(formData).subscribe({
+      next: (data: UploadedFileModel) => {
+        console.log(data.filename);
+
+        this.form.controls["fotografia"].setValue(data.filename)
+        console.log(this.form.controls["fotografia"].value);
+
+        this.uploadedFilename = data.filename;
+        this.uploadedFile = true;
+      }
+    })
+  }
+
+  CreateFormFile() {
+    this.formFile = this.fb.group({
+      file: ["", []]  //atributo vacio y sin ningun requerimiento 
+    });
+  }
 }
