@@ -13,7 +13,8 @@ import { NavbarComponent } from './public/template/navbar/navbar.component';
 import { NotFoundComponent } from './public/errors/not-found/not-found.component';
 import { InternalServerErrorComponent } from './public/errors/internal-server-error/internal-server-error.component';
 import { HomeComponent } from './public/general/home/home.component'; 
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule} from '@angular/common/http';
+import { VincularJuradoComponent } from './modules/solicitud/vincular-jurado/vincular-jurado.component'
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {HttpClientModule} from '@angular/common/http'
     NavbarComponent,
     NotFoundComponent,
     InternalServerErrorComponent,
-    HomeComponent
+    HomeComponent,
+/*     VincularJuradoComponent */
   ],
   imports: [
     BrowserModule,

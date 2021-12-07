@@ -78,7 +78,7 @@ export class CrearProponenteComponent implements OnInit {
     model.correo = this.GetForm['correo'].value;
     model.celular = this.GetForm['telefono'].value;
     model.fotografia = this.GetForm['fotografia'].value;
-    model.idTipoVinculacion = this.GetForm['idTipoVinculacion'].value;
+    model.idTipoVinculacion = parseInt(this.GetForm['idTipoVinculacion'].value);
     this.service.SaveRecord(model).subscribe({
       next: (data: ProponenteModel) => {
         openGeneralMessageModal(generalData.SAVED_MESSAGE);

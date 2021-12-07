@@ -7,11 +7,11 @@
                 <strong> Nombre trabajo: {{nombreTrabajo}}</strong>
             </div> -->
             <div class="input-field col s3">
-                <select multiple formControlName="proponentes" id="selProponente">
-                    <option *ngFor="let c of listaProponentes" value="{{c.id}}">{{c.primerNombre}}</option>
+                <select multiple formControlName="jurados" id="selJurado">
+                    <option *ngFor="let c of listaJurados" value="{{c.id}}">{{c.nombre}}</option>
                     <!-- dibujar las opciones de solicitud a area de investigación -->
                 </select>
-                <label>Tipos de comite</label>
+                <label>Jurados</label>
             </div>
 
         </div>

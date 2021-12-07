@@ -57,7 +57,7 @@ export class EliminarProponenteComponent implements OnInit {
     this.service.RemoveRecord(this.id).subscribe({
       next: (data: ProponenteModel) => {
         openGeneralMessageModal(generalData.REMOVE_MESSAGE);
-        this.router.navigate(["/parametros/listar-facultad"]);
+        this.router.navigate(["/parametros/listar-proponente"]);
       },
       error: (err: any) => {
         openGeneralMessageModal(generalData.ERROR_MESSAGE);

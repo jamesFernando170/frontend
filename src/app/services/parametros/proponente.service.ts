@@ -32,7 +32,8 @@ export class ProponenteService {
       primerApellido: data.primerApellido,
       segundoApellido: data.segundoApellido,
       correo: data.correo,
-      celular: data.celular
+      celular: data.celular,
+      idTipoVinculacion: data.idTipoVinculacion
     },
       {
         headers: new HttpHeaders({
@@ -55,7 +56,8 @@ export class ProponenteService {
         primerApellido: data.primerApellido,
         segundoApellido: data.segundoApellido,
         correo: data.correo,
-        celular: data.celular
+        celular: data.celular,
+        /* idTipoVinculacion: data.idTipoVinculacion */
       },
       {
         headers: new HttpHeaders({
@@ -65,6 +67,8 @@ export class ProponenteService {
   }
 
   RemoveRecord(id: number): Observable<any> {
+    console.log("ID" + id);
+    
     return this.http.delete(
       `${this.url}/proponente-trabajos/${id}`,
       {

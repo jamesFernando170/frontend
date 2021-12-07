@@ -27,7 +27,7 @@ export class ListarProponenteComponent implements OnInit {
   GetRecordList(){
     this.service.GetRecordList().subscribe({
       next: (data: ProponenteModel[]) => {
-        console.log(data[0].p_tienen_tv?.nombreTipo);        
+        console.log(data[1].p_tienen_tv?.nombreTipo);        
         this.recordList = data;
         this.total = this.recordList.length;
       }

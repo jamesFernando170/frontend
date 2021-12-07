@@ -122,4 +122,15 @@ export class SolicitudService {
     });
   }
 
+  asociarJuradoSolicitud(id: number, IdJurados: string): Observable<any> {
+    let nuevoArreglo = [];
+    for (let i = 0; i < IdJurados.length; i++) {
+      nuevoArreglo.push(parseInt(IdJurados[i]))
+    }
+
+    return this.http.post(`${this.url}/asociar-solicitud-jurados/${id}`, { /* Agregar la funcion en el controlador de varios Tipos comite a solicitud */
+      arregloGenerico: nuevoArreglo
+    });
+  }
+
 }
