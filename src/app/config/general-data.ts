@@ -7,6 +7,8 @@ export namespace generalData{
     export const ADMIN_USER_URL = "http://localhost:3002";
     export const BUSSINES_URL = "http://localhost:3000";
     export const SAVED_MESSAGE = "Registro almacenado";
+    export const cambioEstado = "Se cambio el estado de la solitud a aceptado";
+    export const rechazarSolicitud = "Se acabo de rechazar la solicitud";
     export const REMOVE_MESSAGE = "Registro eliminado";
     export const ERROR_MESSAGE = "Error en el backend";
     export const GENERAL_ERROR_MESSAGE = "Error al conectarse con el backend";

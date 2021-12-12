@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { VincularProponenteComponent } from './vincular-proponente/vincular-proponente.component';
 import { VincularJuradoComponent } from './vincular-jurado/vincular-jurado.component';
+import { ResponderInvitacionEvaluarComponent } from './responder-invitacion-evaluar/responder-invitacion-evaluar.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { VincularJuradoComponent } from './vincular-jurado/vincular-jurado.compo
     ListarSolicitudComponent,
     EliminarSolicitudComponent,
     VincularProponenteComponent,
-    VincularJuradoComponent
+    VincularJuradoComponent,
+    ResponderInvitacionEvaluarComponent
   ],
   imports: [
     CommonModule,

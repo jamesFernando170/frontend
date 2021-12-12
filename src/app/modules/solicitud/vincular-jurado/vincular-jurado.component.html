@@ -1,19 +1,41 @@
 <br>
 <br>
-<div class="">
+<div class="container row">
     <form [formGroup]="form" class="col s12">
         <div class="row">
             <!--  <div class="input-field col s3">
                 <strong> Nombre trabajo: {{nombreTrabajo}}</strong>
             </div> -->
-            <div class="input-field col s3">
+            <div class="input-field col s6">
+                <input formControlName="descripcion" id="descripcion" type="text">
+                <label for="descripcion">Descripcion</label>
+            </div>
+
+            <div class="input-field col s6">
                 <select multiple formControlName="jurados" id="selJurado">
                     <option *ngFor="let c of listaJurados" value="{{c.id}}">{{c.nombre}}</option>
                     <!-- dibujar las opciones de solicitud a area de investigación -->
                 </select>
                 <label>Jurados</label>
             </div>
+        </div>
 
+        <div class="row">
+            <div class="input-field col s6">
+                <input formControlName="fechaRespuesta" id="fechaRespuesta" type="text" >
+                <label for="fechaRespuesta">Fecha respuesta</label>
+            </div>
+            <div class="input-field col s6">
+                <input formControlName="fechaInvitacion" id="fechaInvitacion" type="text" >
+                <label for="fechaInvitacion">Fecha invitacion</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <input formControlName="estadoInvitacion" id="estadoInvitacion" type="text" >
+                <label for="estadoInvitacion">Estado invitacion</label>
+            </div>
         </div>
         <div class="row">
             <div class="input-field col s2">
@@ -29,3 +51,41 @@
         </div>
     </form>
 </div>
+
+<!-- <br>
+<div class="row">
+    <form [formGroup]="form" class="col s12">
+        <div class="row">
+            <div class="input-field col s6">
+                <input formControlName="nombre" id="nombre" type="text" >
+                <label for="nombre">Nombre</label>
+            </div>
+            <div class="input-field col s6">
+                <input formControlName="telefono" id="telefono" type="text" >
+                <label for="telefono">Telefono</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input formControlName="correo" id="correo" type="text" >
+                <label for="correo">Correo</label>
+            </div>
+            <div class="input-field col s6">
+                <input formControlName="entidad" id="entidad" type="text" >
+                <label for="entidad">Entidad</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s2">
+                <a routerLink="/parametros/listar-facultad" class="btn btn-warning red">
+                    Cancelar
+                </a>
+            </div>
+            <div class="input-field col s10">
+                <button (click)="SaveRecord()" class="btn btn-success">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </form>
+</div> -->

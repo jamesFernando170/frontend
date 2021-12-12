@@ -49,6 +49,10 @@ export class VincularJuradoComponent implements OnInit {
   CreateForm() {
     this.form = this.fb.group({
       jurados: ["", [Validators.required]],
+      descripcion: ["", [Validators.required]],
+      estadoInvitacion: ["", [Validators.required]],
+      fechaRespuesta: ["", [Validators.required]],
+      fechaInvitacion:  ["", [Validators.required]],
     });
   }
 
@@ -56,10 +60,14 @@ export class VincularJuradoComponent implements OnInit {
     let Idjurados = this.GetForm['jurados'].value;
     console.log(this.GetForm['jurados'].value);
     let id = parseInt(this.route.snapshot.params["id"]);
+    let estadoInvitacion = this.GetForm['estadoInvitacion'].value;
+    let descripcion = this.GetForm['descripcion'].value;
+    let fechaRespuesta = this.GetForm['fechaRespuesta'].value;
+    let fechaInvitacion = this.GetForm['fechaInvitacion'].value;
     console.log(Idjurados, id);
-    
 
-    this.service.asociarJuradoSolicitud(id, Idjurados).subscribe({
+    this.service.asociarJuradoSolicitud(id, Idjurados, descripcion, fechaRespuesta,fechaInvitacion, estadoInvitacion
+      ).subscribe({
       next: () => {
         console.log("Sirvio Perri");
         this.router.navigate(["/solicitud/listar-solicitud"]);
