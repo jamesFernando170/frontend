@@ -29,7 +29,6 @@ export class CrearSolicitudComponent implements OnInit {
   listaComite: TipoComiteModel[] = [];// atributos para usar en el html, en la parte de listas desplegables
   listaModalidad: ModalidadModel[] = [];
   listaTipoSolicitud: TipoSolicitudModel[] = [];
-  listaEstadoSolicitud: estadoSolicitudModel[] = [];
   form: FormGroup = new FormGroup({});
   formFile: FormGroup = new FormGroup({});//para los archivos
 
@@ -45,7 +44,6 @@ export class CrearSolicitudComponent implements OnInit {
     private comiteService: TipoComiteService,
     private modalidadService: ModalidadService,
     private tipoSolicitudService: TipoSolicitudService,
-    private estadoSolicitudService: EstadoSolicitudService
   ) { }
 
   ngOnInit(): void {
@@ -103,19 +101,6 @@ export class CrearSolicitudComponent implements OnInit {
         }
       }
     )
-
-    this.estadoSolicitudService.GetRecordList().subscribe(
-      {
-        next: (data: estadoSolicitudModel[]) => {
-          this.listaEstadoSolicitud = data;
-          setTimeout(() => {
-            InitSelectById("selEstado");
-          }, 100);
-
-        }
-      }
-    )
-
   }
 
   CreateForm() {
@@ -127,7 +112,6 @@ export class CrearSolicitudComponent implements OnInit {
       modalidad: ["", [Validators.required]],
       areaInvestigacion: ["", [Validators.required]],
       tiposComite: ["", [Validators.required]],
-      estadoSolicitud: ["", [Validators.required]],
       archivo:["", [Validators.required]]//archivo que se carga 
     });
   }
@@ -152,11 +136,10 @@ export class CrearSolicitudComponent implements OnInit {
     model.idTipoSolicitud = parseInt(this.GetForm['tipoSolicitud'].value);
     model.idModalidad = parseInt(this.GetForm['modalidad'].value);
     model.idAreaInvestigacion = parseInt(this.GetForm['areaInvestigacion'].value);
-    model.idEstadoSolicitud = parseInt(this.GetForm['estadoSolicitud'].value);
+    model.idEstadoSolicitud = 1; // Id de En solicitud de la base de Datos
     let IdTiposComites = this.GetForm['tiposComite'].value;
 
     console.log(model);
-
 
     this.service.SaveRecord(model).subscribe({
       next: (data: SolicitudModel) => {
