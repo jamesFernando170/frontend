@@ -1,15 +1,24 @@
 <br />
-<div class="container">
-    <a routerLink="/parametros/crear-jurado" class="btn btn-success">Nuevo Registro</a>
-</div>
 
-<table class="table responsive-table striped container">
+<a routerLink="/parametros/crear-jurado" class="btn btn-success">Nuevo Registro</a>
+
+
+<table class="table responsive-table striped">
     <thead>
         <th>
             Id
         </th>
         <th>
-            Nombre
+            Nombres
+        </th>
+        <th>
+            Apellidos
+        </th>
+        <th>
+            Documento
+        </th>
+        <th>
+            Fecha nacimiento
         </th>
         <th>
             Telefono
@@ -31,6 +40,15 @@
             </td>
             <td>
                 {{f.nombre}}
+            </td>
+            <td>
+                {{f.apellidos}}
+            </td>
+            <td>
+                {{f.documento}}
+            </td>
+            <td>
+                {{f.fecha_nacimiento}}
             </td>
             <td>
                 {{f.telefono}}

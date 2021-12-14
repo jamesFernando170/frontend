@@ -33,9 +33,6 @@
                 <input formControlName="descripcion" id="txtDescripcion" type="text">
                 <label for="txtDescripcion">Descripción</label>
             </div>
-        </div>
-
-        <div class="row">
             <div class="input-field col s3">
                 <select formControlName="tipoSolicitud" id="selTipoSolicitud">
                     <!-- cargar las opciones desde la base de datos -->
@@ -44,7 +41,9 @@
                 </select>
                 <label>Tipo solicitud</label>
             </div>
+        </div>
 
+        <div class="row">
             <div class="input-field col s3">
                 <select formControlName="modalidad" id="selModalidad">
                     <!-- cargar las opciones desde la base de datos -->
@@ -69,14 +68,12 @@
                 </select>
                 <label>Tipos de comite</label>
             </div>
-            <div class="input-field col s3">
+            <!-- <div class="input-field col s3">
                 <select formControlName="estadoSolicitud" id="selEstado">
-                    <!-- cargar las opciones desde la base de datos -->
                     <option *ngFor="let c of listaEstadoSolicitud" value="{{c.id}}">{{c.nombre}}</option>
-                    <!-- dibujar las opciones de solicitud a area de investigación -->
                 </select>
                 <label>Estado solicitud</label>
-            </div>
+            </div> -->
             <!-- <div class="input-field col s3">
                 <input formControlName="tiposComite" id="txtTiposComite" type="text">
                 <label for="txtTiposComite">Tipos comite</label>

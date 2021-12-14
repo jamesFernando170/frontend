@@ -44,6 +44,10 @@ import { CrearEstadoSolicitudComponent } from './EstadoSolicitud/crear-estado-so
 import { EditarEstadoSolicitudComponent } from './EstadoSolicitud/editar-estado-solicitud/editar-estado-solicitud.component';
 import { EliminarEstadoSolicitudComponent } from './EstadoSolicitud/eliminar-estado-solicitud/eliminar-estado-solicitud.component';
 import { ListarEstadoSolicitudComponent } from './EstadoSolicitud/listar-estado-solicitud/listar-estado-solicitud.component';
+import { CrearInvitacionEvaluarComponent } from './invitacion-evaluar/crear-invitacion-evaluar/crear-invitacion-evaluar.component';
+import { EditarInvitacionEvaluarComponent } from './invitacion-evaluar/editar-invitacion-evaluar/editar-invitacion-evaluar.component';
+import { ListarInvitacionEvaluarComponent } from './invitacion-evaluar/listar-invitacion-evaluar/listar-invitacion-evaluar.component';
+import { EliminarInvitacionEvaluarComponent } from './invitacion-evaluar/eliminar-invitacion-evaluar/eliminar-invitacion-evaluar.component';
 
 
 @NgModule({
@@ -87,7 +91,11 @@ import { ListarEstadoSolicitudComponent } from './EstadoSolicitud/listar-estado-
     CrearEstadoSolicitudComponent,
     EditarEstadoSolicitudComponent,
     EliminarEstadoSolicitudComponent,
-    ListarEstadoSolicitudComponent
+    ListarEstadoSolicitudComponent,
+    CrearInvitacionEvaluarComponent,
+    EditarInvitacionEvaluarComponent,
+    ListarInvitacionEvaluarComponent,
+    EliminarInvitacionEvaluarComponent
   ],
   imports: [
     CommonModule,

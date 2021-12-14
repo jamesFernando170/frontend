@@ -15,9 +15,12 @@ export class EliminarJuradoComponent implements OnInit {
 
   id: number = 0;
   nombre: string = "";
+  apellidos: string = "";
   telefono: string = "";
   correo: string = "";
   entidad: string = "";
+  documento: string = "";
+  fecha_nacimiento: string = "";
 
   constructor(
     private router: Router,
@@ -33,12 +36,15 @@ export class EliminarJuradoComponent implements OnInit {
     let id = parseInt(this.route.snapshot.params["id"]);
     this.service.SearchRecord(id).subscribe({
       next: (data: JuradoModel) => {
-        if(data.id && data.nombre && data.telefono && data.correo && data.entidad){
+        if(data.id && data.nombre && data.apellidos && data.telefono && data.correo && data.entidad && data.documento && data.fecha_nacimiento ){
           this.id = data.id;
           this.nombre = data.nombre;
+          this.apellidos = data.apellidos;
           this.telefono = data.telefono;
           this.correo = data.correo;
           this.entidad = data.entidad;
+          this.documento = data.documento;
+          this.fecha_nacimiento = data.fecha_nacimiento;
         }
         
       }

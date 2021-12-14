@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { generalData } from 'src/app/config/general-data';
 import { invitacionEvaluarModel } from 'src/app/models/invitacionEvaluar/invitacionEvaluar.model';
+import { JuradoModel } from 'src/app/models/parametros/jurado.model';
 import { SolicitudModel } from 'src/app/models/solicitud/solicitud.model';
 import { UploadedFileModel } from 'src/app/models/solicitud/uploaded.file.model';
 import { LocalStorageService } from '../compartido/local-storage.service';
@@ -158,5 +159,9 @@ export class SolicitudService {
       idJurado: datos.idJurado,
       idSolicitud: datos.idSolicitud
     });
+  }
+
+  obtenerJurado(id: string): Observable<JuradoModel>{
+    return this.http.get<JuradoModel>(`${this.url}/jurados/${id}`);
   }
 }

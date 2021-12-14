@@ -8,6 +8,7 @@
             <li *ngIf="session"><a class="dropdown-trigger" data-target="dropdown1"> Parametros <i
                         class="material-icons right">arrow_drop_down</i></a></li>
             <li *ngIf="session"><a routerLink="solicitud/listar-solicitud">solicitudes</a></li>
+            <!-- <li *ngIf="session"><a routerLink="solicitud/listar-solicitud">Evaluaciones</a></li> -->
             <li *ngIf="session" class=""><a routerLink="seguridad/cambio-clave"><i
                         class="material-icons">account_circle</i></a></li>
             <li *ngIf="session" class=""><a routerLink="seguridad/listar-usuario"><i
@@ -29,6 +30,7 @@
     <li *ngIf="session"><a routerLink="parametros/listar-tipo-comite">Tipos comite</a></li>
     <li *ngIf="session"><a routerLink="parametros/listar-tipo-solicitud">Tipos solicitud</a></li>
     <li *ngIf="session"><a routerLink="parametros/listar-tipo-vinculacion">tipo-vinculacion</a></li>
+    <li *ngIf="session"><a routerLink="parametros/listar-invitacion-evaluar">Evaluaciones</a>
     <!-- <li *ngIf="session"><a routerLink="solicitud/listar-solicitud">solicitudes</a></li> -->
     <!--   <li *ngIf="session" class=""><a routerLink="seguridad/logout">Logout</a></li> -->
 </ul>

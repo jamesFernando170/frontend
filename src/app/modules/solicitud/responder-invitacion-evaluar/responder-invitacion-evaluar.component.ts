@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { generalData } from 'src/app/config/general-data';
 import { invitacionEvaluarModel } from 'src/app/models/invitacionEvaluar/invitacionEvaluar.model';
+import { UsuarioModel } from 'src/app/models/usuario/usuario.model';
 import { SolicitudService } from 'src/app/services/solicitud/solicitud.service';
 
 declare const openGeneralMessageModal: any;
@@ -31,11 +32,11 @@ export class ResponderInvitacionEvaluarComponent implements OnInit {
     
     this.service.hash(hash).subscribe({
       next: (data: invitacionEvaluarModel) => {
-        data.estadoInvitacion = "ACEPTADO";   
-         
+        data.estadoInvitacion = "Aceptado";
+        
         openGeneralMessageModal(generalData.cambioEstado);
         this.service.actualizarInvitacion(data).subscribe({
-                    
+
         })    
       },
       error: (err: any) => {

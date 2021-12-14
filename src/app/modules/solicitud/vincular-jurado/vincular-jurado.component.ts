@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { invitacionEvaluarModel } from 'src/app/models/invitacionEvaluar/invitacionEvaluar.model';
 import { JuradoModel } from 'src/app/models/parametros/jurado.model';
 import { JuradoService } from 'src/app/services/parametros/jurado.service';
 import { SolicitudService } from 'src/app/services/solicitud/solicitud.service';
@@ -64,7 +65,16 @@ export class VincularJuradoComponent implements OnInit {
     let descripcion = this.GetForm['descripcion'].value;
     let fechaRespuesta = this.GetForm['fechaRespuesta'].value;
     let fechaInvitacion = this.GetForm['fechaInvitacion'].value;
-    console.log(Idjurados, id);
+    console.log(Idjurados);
+    let ie = new invitacionEvaluarModel();
+
+    /* for (let i = 0; i < Idjurados.length; i++) {      
+      this.service.obtenerJurado(Idjurados[i]).subscribe({
+        next: (data: JuradoModel) => {
+          ie.jurado = data
+        }
+      })
+    } */
 
     this.service.asociarJuradoSolicitud(id, Idjurados, descripcion, fechaRespuesta,fechaInvitacion, estadoInvitacion
       ).subscribe({
