@@ -5,6 +5,7 @@ import { CrearSolicitudComponent } from './crear-solicitud/crear-solicitud.compo
 import { EditarSolicitudComponent } from './editar-solicitud/editar-solicitud.component';
 import { EliminarSolicitudComponent } from './eliminar-solicitud/eliminar-solicitud.component';
 import { ListarSolicitudComponent } from './listar-solicitud/listar-solicitud.component';
+import { ResponderInvitacionEvaluarComponent } from './responder-invitacion-evaluar/responder-invitacion-evaluar.component';
 import { VincularJuradoComponent } from './vincular-jurado/vincular-jurado.component';
 import { VincularProponenteComponent } from './vincular-proponente/vincular-proponente.component';
 
@@ -49,6 +50,16 @@ const routes: Routes = [
     path: "vincular-jurado/:id",
     component: VincularJuradoComponent,
     canActivate: [AuthenticatedGuard]
+  }
+  ,
+  {
+    path: "vincular-jurado",
+    component: VincularJuradoComponent
+  }
+  ,
+  {
+    path: "responder-invitacion-evaluar",
+    component: ResponderInvitacionEvaluarComponent
   }
 ];
 

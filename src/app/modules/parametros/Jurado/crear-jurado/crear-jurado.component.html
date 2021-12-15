@@ -1,16 +1,28 @@
 <br>
-<div class="row">
+<div class="row"> <!-- telefono -->
     <form [formGroup]="form" class="col s12">
         <div class="row">
             <div class="input-field col s6">
                 <input formControlName="nombre" id="nombre" type="text" >
-                <label for="nombre">Nombre</label>
+                <label for="nombre">Nombres</label>
             </div>
             <div class="input-field col s6">
-                <input formControlName="telefono" id="telefono" type="text" >
-                <label for="telefono">Telefono</label>
+                <input formControlName="apellidos" id="apellidos" type="text" >
+                <label for="apellidos">Apellidos</label>
             </div>
         </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <input formControlName="documento" id="documento" type="text" >
+                <label for="documento">Documento</label>
+            </div>
+            <div class="input-field col s6">
+                <input formControlName="fecha_nacimiento" id="fecha_nacimiento" type="text" >
+                <label for="fecha_nacimiento">Fecha nacimiento</label>
+            </div>
+        </div>
+
         <div class="row">
             <div class="input-field col s6">
                 <input formControlName="correo" id="correo" type="text" >
@@ -21,9 +33,16 @@
                 <label for="entidad">Entidad</label>
             </div>
         </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <input formControlName="telefono" id="telefono" type="text" >
+                <label for="telefono">Telefono</label>
+            </div>
+        </div>
         <div class="row">
             <div class="input-field col s2">
-                <a routerLink="/parametros/listar-facultad" class="btn btn-warning red">
+                <a routerLink="/parametros/listar-jurado" class="btn btn-warning red">
                     Cancelar
                 </a>
             </div>

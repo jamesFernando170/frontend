@@ -32,9 +32,12 @@ export class EditarJuradoComponent implements OnInit {
     this.form = this.fb.group({
       id: ["", [Validators.required]],
       nombre: ["", [Validators.required]],
+      apellidos: ["", [Validators.required]], 
       telefono: ["", [Validators.required]],
       correo: ["", [Validators.required]],
-      entidad: ["", [Validators.required]]
+      entidad: ["", [Validators.required]],
+      fecha_nacimiento: ["", [Validators.required]],
+      documento: ["", [Validators.required]],
     });
   }
 
@@ -44,9 +47,12 @@ export class EditarJuradoComponent implements OnInit {
       next: (data: JuradoModel) => {
         this.GetForm['id'].setValue(data.id);
         this.GetForm['nombre'].setValue(data.nombre);
+        this.GetForm['apellidos'].setValue(data.apellidos);
         this.GetForm['telefono'].setValue(data.telefono);
         this.GetForm['correo'].setValue(data.correo);
         this.GetForm['entidad'].setValue(data.entidad);
+        this.GetForm['fecha_nacimiento'].setValue(data.fecha_nacimiento);
+        this.GetForm['documento'].setValue(data.documento);
       }
     });
   }
@@ -55,9 +61,12 @@ export class EditarJuradoComponent implements OnInit {
     let model = new JuradoModel();
     model.id = this.GetForm['id'].value;
     model.nombre = this.GetForm['nombre'].value;
+    model.apellidos = this.GetForm['apellidos'].value;
     model.telefono = this.GetForm['telefono'].value;
     model.correo = this.GetForm['correo'].value;
     model.entidad = this.GetForm['entidad'].value;
+    model.fecha_nacimiento = this.GetForm['fecha_nacimiento'].value;
+    model.documento = this.GetForm['documento'].value;
     this.service.EditRecord(model).subscribe({
       next: (data: JuradoModel) =>{
         openGeneralMessageModal(generalData.SAVED_MESSAGE);

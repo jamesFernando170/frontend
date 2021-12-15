@@ -1,4 +1,5 @@
 export class userCredentialsModel{
     username?: string;
-    password?: string
+    password?: string;
+    rol?: string;
 }

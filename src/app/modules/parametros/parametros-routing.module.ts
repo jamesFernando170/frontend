@@ -19,6 +19,7 @@ import { CrearGfacultadComponent } from './Facultad/crear-gfacultad/crear-gfacul
 import { EditarFacultadComponent } from './Facultad/editar-facultad/editar-facultad.component';
 import { EliminarFacultadComponent } from './Facultad/eliminar-facultad/eliminar-facultad.component';
 import { ListarFacultadComponent } from './Facultad/listar-facultad/listar-facultad.component';
+import { ListarInvitacionEvaluarComponent } from './invitacion-evaluar/listar-invitacion-evaluar/listar-invitacion-evaluar.component';
 import { CrearJuradoComponent } from './Jurado/crear-jurado/crear-jurado.component';
 import { EditarJuradoComponent } from './Jurado/editar-jurado/editar-jurado.component';
 import { EliminarJuradoComponent } from './Jurado/eliminar-jurado/eliminar-jurado.component';
@@ -336,7 +337,12 @@ const routes: Routes = [
     path: "listar-estado-solicitud",
     component: ListarEstadoSolicitudComponent,
     canActivate: [AuthenticatedGuard]
-  }
+  },
+  {
+    path: "listar-invitacion-evaluar",
+    component: ListarInvitacionEvaluarComponent,
+    canActivate: [AuthenticatedGuard] 
+  } 
 ];
 
 @NgModule({

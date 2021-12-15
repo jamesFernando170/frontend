@@ -30,6 +30,10 @@ const routes: Routes = [
     loadChildren: () => import("./modules/reportes/reportes.module").then(x => x.ReportesModule)
   },
   {
+    path: "evaluar",
+    loadChildren: () => import("./modules/evaluar/evaluar.module").then(x => x.EvaluarModule)
+  },
+  {
     path: "**",
     component: NotFoundComponent
   }

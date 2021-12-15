@@ -29,18 +29,24 @@ export class CrearJuradoComponent implements OnInit {
   createForm() {
     this.form = this.fb.group({
       nombre: ["", [Validators.required]],
+      apellidos: ["", [Validators.required]], 
       telefono: ["", [Validators.required]],
       correo: ["", [Validators.required]],
-      entidad: ["", [Validators.required]]
+      entidad: ["", [Validators.required]],
+      fecha_nacimiento: ["", [Validators.required]],
+      documento: ["", [Validators.required]],
     });
   }
 
   SaveRecord(){
     let model = new JuradoModel();
     model.nombre = this.GetForm['nombre'].value;
+    model.apellidos = this.GetForm['apellidos'].value;
     model.telefono = this.GetForm['telefono'].value;
     model.correo = this.GetForm['correo'].value;
     model.entidad = this.GetForm['entidad'].value;
+    model.fecha_nacimiento = this.GetForm['fecha_nacimiento'].value;
+    model.documento = this.GetForm['documento'].value;
     this.service.SaveRecord(model).subscribe({
       next: (data: JuradoModel) =>{
         openGeneralMessageModal(generalData.SAVED_MESSAGE);

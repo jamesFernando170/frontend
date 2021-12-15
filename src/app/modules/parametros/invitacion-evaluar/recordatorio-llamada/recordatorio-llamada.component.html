@@ -1,0 +1,30 @@
+<br>
+<div class="row">
+    <form [formGroup]="form" class="col s12">
+        <div class="row">
+            <div class="input-field aling-center col s9">
+                <textarea formControlName="descripcion" id="descripcion" class="materialize-textarea"></textarea>
+                <label for="descripcion">Descripción de la Llamada</label>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s3">
+                <input formControlName="horaLlammada" type="text" class="timepicker" id="hora">
+                <label for="hora">Hora de la Llamada</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s2">
+                <a routerLink="/parametros/listar-jurado" class="btn btn-warning red">
+                    Cancelar
+                </a>
+            </div>
+            <div class="input-field col s10">
+                <button (click)="SaveRecord()" class="btn btn-success">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

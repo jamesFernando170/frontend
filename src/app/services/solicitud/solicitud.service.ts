@@ -2,8 +2,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { generalData } from 'src/app/config/general-data';
+import { invitacionEvaluarModel } from 'src/app/models/invitacionEvaluar/invitacionEvaluar.model';
+import { JuradoModel } from 'src/app/models/parametros/jurado.model';
 import { SolicitudModel } from 'src/app/models/solicitud/solicitud.model';
 import { UploadedFileModel } from 'src/app/models/solicitud/uploaded.file.model';
+import { UsuarioModel } from 'src/app/models/usuario/usuario.model';
 import { LocalStorageService } from '../compartido/local-storage.service';
 
 @Injectable({
@@ -11,6 +14,7 @@ import { LocalStorageService } from '../compartido/local-storage.service';
 })
 export class SolicitudService {
   url: string = generalData.BUSSINES_URL;
+  urlUsuarios: string = generalData.ADMIN_USER_URL;
   token: string = "";
   filter: string = `?filter={"include":[{"relation":"s_es_ts"}, {"relation":"s_tiene_es"},{"relation":"s_tiene_m"},{"relation":"s_tiene_ai"},{"relation":"tiposComites"}]}`;//mirar que el filtro este bueno, con modalidad, area investigación, estado, tipo solicitud
 
@@ -122,15 +126,59 @@ export class SolicitudService {
     });
   }
 
-  asociarJuradoSolicitud(id: number, IdJurados: string): Observable<any> {
+  asociarJuradoSolicitud(id: number, IdJurados: string, descripcion: string, fechaRespuest: Date, fechaInvi: Date, estadoInvi: string): Observable<any> {
+    console.log(id, IdJurados);
+    console.log(descripcion);
+
     let nuevoArreglo = [];
     for (let i = 0; i < IdJurados.length; i++) {
       nuevoArreglo.push(parseInt(IdJurados[i]))
     }
 
     return this.http.post(`${this.url}/asociar-solicitud-jurados/${id}`, { /* Agregar la funcion en el controlador de varios Tipos comite a solicitud */
-      arregloGenerico: nuevoArreglo
+      arregloGenerico: nuevoArreglo,
+      descripcion: descripcion,
+      fechaRespuesta: fechaRespuest,
+      fechaInvitacion: fechaInvi,
+      estadoInvitacion: estadoInvi
     });
   }
 
+  hash(hash: string): Observable<invitacionEvaluarModel> {
+    console.log(hash);
+    return this.http.post(`${this.url}/invitacion-evaluars-hash`, { /* Agregar la funcion en el controlador de varios Tipos comite a solicitud */
+      hash: hash
+    });
+  }
+
+  actualizarInvitacion(datos: invitacionEvaluarModel): Observable<any> {
+    return this.http.patch(`${this.url}/invitacion-evaluars/${datos.id}`, { /* Agregar la funcion en el controlador de varios Tipos comite a solicitud */
+      descripcion: datos.descripcion,
+      fechaRespuesta: datos.fechaRespuesta,
+      fechaInvitacion: datos.fechaInvitacion,
+      estadoInvitacion: datos.estadoInvitacion,
+      hash: datos.hash,
+      idJurado: datos.idJurado,
+      idSolicitud: datos.idSolicitud
+    });
+  }
+
+  obtenerJurado(id: number): Observable<JuradoModel> {
+    return this.http.get<JuradoModel>(`${this.url}/jurados/${id}`);
+  }
+
+  obtenerUser(correo?: string): Observable<UsuarioModel> {
+    return this.http.get<UsuarioModel>(`${this.urlUsuarios}/usuarios-correo2/${correo}`);
+  }
+
+  crearUsuario(usuario: JuradoModel): Observable<UsuarioModel> {
+    return this.http.post<UsuarioModel>(`${this.urlUsuarios}/usuarios`, {
+      correo: usuario?.correo,
+      nombre: usuario?.nombre,
+      celular: usuario?.telefono,
+      documento: usuario?.documento,
+      apellidos: usuario?.apellidos,
+      fecha_nacimiento: usuario?.fecha_nacimiento
+    });
+  }
 }

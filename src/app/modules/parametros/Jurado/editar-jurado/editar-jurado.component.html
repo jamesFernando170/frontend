@@ -1,16 +1,29 @@
+<br>
 <div class="row">
     <form [formGroup]="form" class="col s12">
         <input type="hidden" formControlName="id" />
         <div class="row">
             <div class="input-field col s6">
                 <input formControlName="nombre" id="nombre" type="text" >
-                <label for="nombre" class="active">Nombre</label>
+                <label for="nombre" class="active">Nombres</label>
             </div>
             <div class="input-field col s6">
-                <input formControlName="telefono" id="telefono" type="text" >
-                <label for="telefono">Telefono</label>
+                <input formControlName="apellidos" id="apellidos" type="text" >
+                <label for="apellidos">Apellidos</label>
             </div>
         </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <input formControlName="documento" id="documento" type="text" >
+                <label for="documento">Documento</label>
+            </div>
+            <div class="input-field col s6">
+                <input formControlName="fecha_nacimiento" id="fecha_nacimiento" type="text" >
+                <label for="fecha_nacimiento">Fecha nacimiento</label>
+            </div>
+        </div>
+
         <div class="row">
             <div class="input-field col s6">
                 <input formControlName="correo" id="correo" type="text" >
@@ -19,6 +32,13 @@
             <div class="input-field col s6">
                 <input formControlName="entidad" id="entidad" type="text" >
                 <label for="entidad">Entidad</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <input formControlName="telefono" id="telefono" type="text" >
+                <label for="telefono">Telefono</label>
             </div>
         </div>
         <div class="row">

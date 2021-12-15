@@ -1,7 +1,10 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { invitacionEvaluarModel } from 'src/app/models/invitacionEvaluar/invitacionEvaluar.model';
 import { JuradoModel } from 'src/app/models/parametros/jurado.model';
+import { UsuarioModel } from 'src/app/models/usuario/usuario.model';
 import { JuradoService } from 'src/app/services/parametros/jurado.service';
 import { SolicitudService } from 'src/app/services/solicitud/solicitud.service';
 
@@ -49,6 +52,10 @@ export class VincularJuradoComponent implements OnInit {
   CreateForm() {
     this.form = this.fb.group({
       jurados: ["", [Validators.required]],
+      descripcion: ["", [Validators.required]],
+      estadoInvitacion: ["", [Validators.required]],
+      fechaRespuesta: ["", [Validators.required]],
+      fechaInvitacion: ["", [Validators.required]],
     });
   }
 
@@ -56,11 +63,34 @@ export class VincularJuradoComponent implements OnInit {
     let Idjurados = this.GetForm['jurados'].value;
     console.log(this.GetForm['jurados'].value);
     let id = parseInt(this.route.snapshot.params["id"]);
-    console.log(Idjurados, id);
-    
+    let estadoInvitacion = this.GetForm['estadoInvitacion'].value;
+    let descripcion = this.GetForm['descripcion'].value;
+    let fechaRespuesta = this.GetForm['fechaRespuesta'].value;
+    let fechaInvitacion = this.GetForm['fechaInvitacion'].value;
+    console.log(Idjurados);
 
-    this.service.asociarJuradoSolicitud(id, Idjurados).subscribe({
+    this.service.asociarJuradoSolicitud(id, Idjurados, descripcion, fechaRespuesta, fechaInvitacion, estadoInvitacion
+    ).subscribe({
       next: () => {
+        for (let i = 0; i < Idjurados.length; i++) {
+
+          /* this.service.obtenerJurado(Idjurados[i]).subscribe({
+            next: (data: JuradoModel) => {
+              
+              this.service.obtenerUser(data.correo).subscribe({
+                next: (data1: UsuarioModel) => {
+                  if (!data1) {                    
+                    this.service.crearUsuario(data).subscribe({
+                      next: (x: UsuarioModel) => {
+                        console.log(data);
+                      }
+                    })
+                  }
+                }
+              })
+            }
+          }) */
+        }
         console.log("Sirvio Perri");
         this.router.navigate(["/solicitud/listar-solicitud"]);
       }
