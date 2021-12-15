@@ -5,11 +5,13 @@ import { EvaluarRoutingModule } from './evaluar-routing.module';
 import { ListarEvaluacionesComponent } from './listar-evaluaciones/listar-evaluaciones.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { EvaluarTrabajoComponent } from './evaluar-trabajo/evaluar-trabajo.component';
 
 
 @NgModule({
   declarations: [
-    ListarEvaluacionesComponent
+    ListarEvaluacionesComponent,
+    EvaluarTrabajoComponent
   ],
   imports: [
     CommonModule,
