@@ -31,6 +31,7 @@ import { CrearProponenteComponent } from './proponente/crear-proponente/crear-pr
 import { EditarProponenteComponent } from './proponente/editar-proponente/editar-proponente.component';
 import { EliminarProponenteComponent } from './proponente/eliminar-proponente/eliminar-proponente.component';
 import { ListarProponenteComponent } from './proponente/listar-proponente/listar-proponente.component';
+import { CrearRecordatorioComponent } from './recordatorio/crear-recordatorio/crear-recordatorio.component';
 import { CrearTipoComiteComponent } from './tipoComite/crear-tipo-comite/crear-tipo-comite.component';
 import { EditarTipoComiteComponent } from './tipoComite/editar-tipo-comite/editar-tipo-comite.component';
 import { EliminarTipoComiteComponent } from './tipoComite/eliminar-tipo-comite/eliminar-tipo-comite.component';
@@ -283,7 +284,16 @@ const routes: Routes = [
   {
     path: "listar-invitacion-evaluar",
     component: ListarInvitacionEvaluarComponent 
-  } 
+  },
+  // Recordatorio
+  {
+    path: "crear-recordatorio",
+    component: CrearRecordatorioComponent 
+  },
+  {
+    path: "crear-recordatorio/:id",
+    component: CrearRecordatorioComponent 
+  }  
 ];
 
 @NgModule({

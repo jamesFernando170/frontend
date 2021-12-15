@@ -1,0 +1,45 @@
+<br>
+<div class="row">
+    <form [formGroup]="form" class="col s12">
+        <div class="row">
+            <div class="input-field col s5">
+                <input formControlName="descripcion" id="descripcion" type="text">
+                <label for="descripcion">Descripcion</label>
+            </div>
+            <div class="input-field col s5">
+                <input formControlName="fecha" id="fecha" type="text">
+                <label for="fecha">Fecha</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s5">
+                <input formControlName="hora" id="hora" type="text">
+                <label for="hora">Hora</label>
+            </div>
+            <div class="input-field col s5">
+                <input formControlName="tipoRecordatorio" id="tipoRecordatorio" type="text">
+                <label for="tipoRecordatorio">Tipo recordatorio</label>
+            </div>
+<!--             <div class="input-field col s3">
+                <select multiple id="select">
+                    <option value="">Llamada</option>
+                    <option value="">Mensaje</option>
+                </select>
+                <label>Tipos de comite</label>
+            </div> -->
+        </div>
+        <div class="row">
+            <div class="input-field col s2">
+                <a routerLink="/solicitud/listar-solicitud" class="btn btn-warning red">
+                    Cancelar
+                </a>
+            </div>
+            <div class="input-field col s10">
+                <button (click)="SaveRecord()" class="btn btn-success">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

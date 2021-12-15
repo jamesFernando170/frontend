@@ -21,11 +21,15 @@ export class InvitacionEvaluarService {
     return this.http.get<invitacionEvaluarModel[]>(`${this.url}/invitacion-evaluars${this.filter}`); /* verifico cuando tengo los registros, traigo la informacion para mostrarla en la página*/
   }
 
-  obtenerJurado(id?: number): Observable<JuradoModel>{
+  obtenerInvitacionEvaluar(idInvitacion?: number): Observable<invitacionEvaluarModel> {
+    return this.http.get(`${this.url}/invitacion-evaluars/${idInvitacion}`);
+  }
+
+  obtenerJurado(id?: number): Observable<JuradoModel> {
     return this.http.get<JuradoModel>(`${this.url}/jurados/${id}`);
   }
 
-  obtenerSolicitud(id?: number): Observable<SolicitudModel>{
+  obtenerSolicitud(id?: number): Observable<SolicitudModel> {
     return this.http.get<SolicitudModel>(`${this.url}/solicituds/${id}`);
   }
 }
