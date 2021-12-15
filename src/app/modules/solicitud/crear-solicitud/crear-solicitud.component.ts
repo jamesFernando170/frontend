@@ -136,7 +136,7 @@ export class CrearSolicitudComponent implements OnInit {
     model.idTipoSolicitud = parseInt(this.GetForm['tipoSolicitud'].value);
     model.idModalidad = parseInt(this.GetForm['modalidad'].value);
     model.idAreaInvestigacion = parseInt(this.GetForm['areaInvestigacion'].value);
-    model.idEstadoSolicitud = 1; // Id de En solicitud de la base de Datos
+    model.idEstadoSolicitud = 1; // Id de "En solicitud" de la base de Datos
     let IdTiposComites = this.GetForm['tiposComite'].value;
 
     console.log(model);
