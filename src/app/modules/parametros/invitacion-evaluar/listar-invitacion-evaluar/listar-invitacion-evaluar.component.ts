@@ -39,7 +39,7 @@ export class ListarInvitacionEvaluarComponent implements OnInit {
   solicitudInvitacionEvaluar(data: invitacionEvaluarModel){
     this.service.obtenerSolicitud(data?.idSolicitud).subscribe({
       next: (data1: SolicitudModel) => {
-        data.solicitud = data1
+        data.solicitud = data1;
         console.log(data.solicitud);
       }
     })

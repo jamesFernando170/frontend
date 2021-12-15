@@ -44,7 +44,8 @@ export class SecurityService {
 
     return this.http.post<SessionData>(`${this.url}/identificar-usuario`, {
       usuario: modelo.username,
-      clave: modelo.password
+      clave: modelo.password,
+      rol: modelo.rol
     });
   }
 

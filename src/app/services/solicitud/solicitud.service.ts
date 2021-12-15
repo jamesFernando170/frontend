@@ -6,6 +6,7 @@ import { invitacionEvaluarModel } from 'src/app/models/invitacionEvaluar/invitac
 import { JuradoModel } from 'src/app/models/parametros/jurado.model';
 import { SolicitudModel } from 'src/app/models/solicitud/solicitud.model';
 import { UploadedFileModel } from 'src/app/models/solicitud/uploaded.file.model';
+import { UsuarioModel } from 'src/app/models/usuario/usuario.model';
 import { LocalStorageService } from '../compartido/local-storage.service';
 
 @Injectable({
@@ -13,6 +14,7 @@ import { LocalStorageService } from '../compartido/local-storage.service';
 })
 export class SolicitudService {
   url: string = generalData.BUSSINES_URL;
+  urlUsuarios: string = generalData.ADMIN_USER_URL;
   token: string = "";
   filter: string = `?filter={"include":[{"relation":"s_es_ts"}, {"relation":"s_tiene_es"},{"relation":"s_tiene_m"},{"relation":"s_tiene_ai"},{"relation":"tiposComites"}]}`;//mirar que el filtro este bueno, con modalidad, area investigación, estado, tipo solicitud
 
@@ -149,7 +151,7 @@ export class SolicitudService {
     });
   }
 
-  actualizarInvitacion(datos: invitacionEvaluarModel): Observable<any>  {
+  actualizarInvitacion(datos: invitacionEvaluarModel): Observable<any> {
     return this.http.patch(`${this.url}/invitacion-evaluars/${datos.id}`, { /* Agregar la funcion en el controlador de varios Tipos comite a solicitud */
       descripcion: datos.descripcion,
       fechaRespuesta: datos.fechaRespuesta,
@@ -161,7 +163,22 @@ export class SolicitudService {
     });
   }
 
-  obtenerJurado(id: string): Observable<JuradoModel>{
+  obtenerJurado(id: number): Observable<JuradoModel> {
     return this.http.get<JuradoModel>(`${this.url}/jurados/${id}`);
+  }
+
+  obtenerUser(correo?: string): Observable<UsuarioModel> {
+    return this.http.get<UsuarioModel>(`${this.urlUsuarios}/usuarios-correo2/${correo}`);
+  }
+
+  crearUsuario(usuario: JuradoModel): Observable<UsuarioModel> {
+    return this.http.post<UsuarioModel>(`${this.urlUsuarios}/usuarios`, {
+      correo: usuario?.correo,
+      nombre: usuario?.nombre,
+      celular: usuario?.telefono,
+      documento: usuario?.documento,
+      apellidos: usuario?.apellidos,
+      fecha_nacimiento: usuario?.fecha_nacimiento
+    });
   }
 }

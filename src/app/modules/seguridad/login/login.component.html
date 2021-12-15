@@ -29,6 +29,16 @@
                             <label>Porfavor ingresar una contraseña valida</label>
                         </div>
                     </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select formControlName="rolUsuario" id="selRol">
+                            <option *ngFor="let b of listaRoles" value="{{b._id}}">{{b.nombre}}</option>
+                        </select>
+                        <label>Rol</label>
+                    </div>
+
                     <label style='float: right;'>
                         <a class='' routerLink = '/seguridad/recuperar-clave'><b>¿Olvido su contraseña?</b></a>
                     </label>
