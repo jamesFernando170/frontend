@@ -22,8 +22,21 @@ export class InvitacionEvaluarService {
   }
 
   obtenerInvitacionEvaluar(idInvitacion?: number): Observable<invitacionEvaluarModel> {
-    return this.http.get(`${this.url}/invitacion-evaluars/${idInvitacion}`);
+    return this.http.get<invitacionEvaluarModel>(`${this.url}/invitacion-evaluars/${idInvitacion}`);
   }
+
+  actualizarInvitacion(datos: invitacionEvaluarModel): Observable<any> {
+    return this.http.patch(`${this.url}/invitacion-evaluars/${datos.id}`, { /* Agregar la funcion en el controlador de varios Tipos comite a solicitud */
+      descripcion: datos.descripcion,
+      fechaRespuesta: datos.fechaRespuesta,
+      fechaInvitacion: datos.fechaInvitacion,
+      estadoInvitacion: datos.estadoInvitacion,
+      hash: datos.hash,
+      idJurado: datos.idJurado,
+      idSolicitud: datos.idSolicitud
+    });
+  }
+
 
   obtenerJurado(id?: number): Observable<JuradoModel> {
     return this.http.get<JuradoModel>(`${this.url}/jurados/${id}`);
