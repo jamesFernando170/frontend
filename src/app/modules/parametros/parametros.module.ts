@@ -49,6 +49,8 @@ import { EditarInvitacionEvaluarComponent } from './invitacion-evaluar/editar-in
 import { ListarInvitacionEvaluarComponent } from './invitacion-evaluar/listar-invitacion-evaluar/listar-invitacion-evaluar.component';
 import { EliminarInvitacionEvaluarComponent } from './invitacion-evaluar/eliminar-invitacion-evaluar/eliminar-invitacion-evaluar.component';
 import { RecordatorioLlamadaComponent } from './invitacion-evaluar/recordatorio-llamada/recordatorio-llamada.component';
+import { CrearRecordatorioComponent } from './recordatorio/crear-recordatorio/crear-recordatorio.component';
+import { ListarRecordatorioComponent } from './recordatorio/listar-recordatorio/listar-recordatorio.component';
 
 
 @NgModule({
@@ -97,7 +99,9 @@ import { RecordatorioLlamadaComponent } from './invitacion-evaluar/recordatorio-
     EditarInvitacionEvaluarComponent,
     ListarInvitacionEvaluarComponent,
     EliminarInvitacionEvaluarComponent,
-    RecordatorioLlamadaComponent
+    RecordatorioLlamadaComponent,
+    CrearRecordatorioComponent,
+    ListarRecordatorioComponent
   ],
   imports: [
     CommonModule,

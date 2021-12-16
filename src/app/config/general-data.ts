@@ -11,8 +11,10 @@ export namespace generalData{
     export const rechazarSolicitud = "Se acabo de rechazar la solicitud";
     export const REMOVE_MESSAGE = "Registro eliminado";
     export const ERROR_MESSAGE = "Error en el backend";
+    export const SOLICITUD_EXISTENTE = "Esta solicitud ya se evaluo anteriormente, y el idemtificador es: ";
     export const GENERAL_ERROR_MESSAGE = "Error al conectarse con el backend";
     export const rolInvalido = "Este usuario no esta vinculado con ese rol";
+    export const recordatorioInvalido = "Esta solicitud no se le puede enviar recordatorio porque esta ya fue aceptada";
     export const RECORDS_BY_PAGE = 3;
     export const RECORDS_BY_PAGE2 = 3;
 }

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { generalData } from 'src/app/config/general-data';
 import { RecordatorioModel } from 'src/app/models/invitacionEvaluar/Recordatorio.model';
 import { RecordatorioLlamadaService } from 'src/app/services/invitacion-evaluar/recordatorio-llamada.service';
+
+declare const openGeneralMessageModal: any;
 
 @Component({
   selector: 'app-recordatorio-llamada',
@@ -16,7 +19,8 @@ export class RecordatorioLlamadaComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private service: RecordatorioLlamadaService
+    private service: RecordatorioLlamadaService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -30,30 +34,25 @@ export class RecordatorioLlamadaComponent implements OnInit {
     });
   }
 
-  /*
-  descripcion?: string;
-    fecha?: string;
-    hora?: string;
-    tipoRecordatorio?: string;
-    idInvitacionEvaluar?: number;
-  */
-
   SaveRecord(){
     let model = new RecordatorioModel();
     model.descripcion = this.GetForm['descripcion'].value;
     model.hora = this.GetForm['horaLlamada'].value;
     let fecha = new Date();
     model.fecha = fecha.toISOString();
+    model.tipoRecordatorio = 'LLamada';
+    let idInvitacion = parseInt(this.route.snapshot.params["id"]);
+    model.idInvitacionEvaluar = idInvitacion;
 
-    /* this.service.SaveRecord(model).subscribe({
-      next: (data: estadoSolicitudModel) =>{
+    this.service.SaveRecord(model).subscribe({
+      next: (data: RecordatorioModel) =>{
         openGeneralMessageModal(generalData.SAVED_MESSAGE);
-        this.router.navigate(["/parametros/listar-estado-solicitud"]);
+        this.router.navigate(["/parametros/listar-invitacion-evaluar"]);
       },
       error: (err: any) => {
         openGeneralMessageModal(generalData.ERROR_MESSAGE);
       }
-    }); */
+    });
   }
 
   get GetForm() {

@@ -112,11 +112,11 @@ export class CrearSolicitudComponent implements OnInit {
       modalidad: ["", [Validators.required]],
       areaInvestigacion: ["", [Validators.required]],
       tiposComite: ["", [Validators.required]],
-      archivo:["", [Validators.required]]//archivo que se carga 
+      archivo: ["", [Validators.required]]//archivo que se carga 
     });
   }
 
-  CreateFormFile(){
+  CreateFormFile() {
     this.formFile = this.fb.group({
       file: ["", []]  //atributo vacio y sin ningun requerimiento 
     });
@@ -127,10 +127,10 @@ export class CrearSolicitudComponent implements OnInit {
     let model = new SolicitudModel();
     model.nombreTrabajo = this.GetForm['nombreTrabajo'].value;
     console.log(this.GetForm['tipoSolicitud'].value);
-    
+
     model.archivo = this.GetForm['archivo'].value;//para poner el archivo
     console.log(this.GetForm['archivo'].value);
-    
+
     model.fecha = this.GetForm['fecha'].value;
     model.descripcion = this.GetForm['descripcion'].value;
     model.idTipoSolicitud = parseInt(this.GetForm['tipoSolicitud'].value);
@@ -140,24 +140,44 @@ export class CrearSolicitudComponent implements OnInit {
     let IdTiposComites = this.GetForm['tiposComite'].value;
 
     console.log(model);
-
-    this.service.SaveRecord(model).subscribe({
-      next: (data: SolicitudModel) => {
-        if (data.id) {
-          this.service.asociarTiposComiteSolicitud(data.id, IdTiposComites).subscribe({
-            next: () => {
-              console.log("sirvce");
-
-            }
-          })
-          openGeneralMessageModal(generalData.SAVED_MESSAGE);
-          this.router.navigate(["/solicitud/listar-solicitud"]);
+    let existe = false;
+    let idSolicitudExistente = new SolicitudModel();
+    this.service.GetRecordList().subscribe({
+      next: (solicitudes: SolicitudModel[]) => {
+        for (let index = 0; index < solicitudes.length; index++) {
+          if (solicitudes[index].nombreTrabajo?.toLowerCase() == model.nombreTrabajo?.toLowerCase() && solicitudes[index].descripcion?.toLowerCase() == model.descripcion?.toLowerCase() && solicitudes[index].idTipoSolicitud == model.idTipoSolicitud
+            && solicitudes[index].idModalidad == model.idModalidad && solicitudes[index].idAreaInvestigacion == model.idAreaInvestigacion) {
+              existe = true;
+              if(!solicitudes[index] == undefined){
+                idSolicitudExistente = solicitudes[index];
+              }
+          }
         }
-      },
-      error: (err: any) => {
-        openGeneralMessageModal(generalData.ERROR_MESSAGE);
       }
     });
+
+    if(existe = false){
+      this.service.SaveRecord(model).subscribe({
+        next: (data: SolicitudModel) => {
+          if (data.id) {
+            this.service.asociarTiposComiteSolicitud(data.id, IdTiposComites).subscribe({
+              next: () => {
+                console.log("sirvce");
+  
+              }
+            })
+            openGeneralMessageModal(generalData.SAVED_MESSAGE);
+            this.router.navigate(["/solicitud/listar-solicitud"]);
+          }
+        },
+        error: (err: any) => {
+          openGeneralMessageModal(generalData.ERROR_MESSAGE);
+        }
+      });
+    }else{
+      openGeneralMessageModal(generalData.SOLICITUD_EXISTENTE + idSolicitudExistente.id);
+    }
+
   }
 
   get GetForm() {
@@ -165,27 +185,27 @@ export class CrearSolicitudComponent implements OnInit {
   }
 
   //disparador del cambio 
-  OnchangeInputFile(event: any){
-    if(event.target.files.length > 0){
+  OnchangeInputFile(event: any) {
+    if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.formFile.controls["file"].setValue(file);//asigno el archivo
     }
   }
 
   //Subimos el archivo cargado
-  UpLoadArchivo(){
+  UpLoadArchivo() {
     //generar un fornData pero no en HTML, sino por TS
     const formData = new FormData();
     formData.append("file", this.formFile.controls["file"].value) //el primer "file", mismo nombre de documentos en keys del backend...obtengo el archivo
 
     //lo envío al servicio 
     this.service.UploadFile(formData).subscribe({
-      next: (data: UploadedFileModel) =>{
+      next: (data: UploadedFileModel) => {
         console.log(data.filename);
-        
+
         this.form.controls["archivo"].setValue(data.filename)
         console.log(this.form.controls["archivo"].value);
-        
+
         this.uploadedFilename = data.filename;
         this.uploadedFile = true;
       }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { generalData } from 'src/app/config/general-data';
 import { TipoSolicitudModel } from 'src/app/models/parametros/tipo-solicitud.model';
+import { DownloadFileModel } from 'src/app/models/solicitud/download.file.model';
 import { TipoSolicitudService } from 'src/app/services/parametros/tipo-solicitud.service';
 
 declare const openGeneralMessageModal: any;
@@ -50,6 +51,10 @@ export class CrearTipoSolicitudComponent implements OnInit {
 
   get GetForm() {
     return this.form.controls;
+  }
+
+  download(){
+    DownloadFileModel.downloadFile('http://localhost:4200/src/app/archivos/TipoSolicitud.docx','downloadFile');
   }
 
 }

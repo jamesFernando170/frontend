@@ -71,7 +71,4 @@ export class VincularProponenteComponent implements OnInit {
   get GetForm() {
     return this.form.controls;
   }
-
-
-
 }

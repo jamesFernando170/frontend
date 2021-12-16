@@ -1,10 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { generalData } from 'src/app/config/general-data';
 import { invitacionEvaluarModel } from 'src/app/models/invitacionEvaluar/invitacionEvaluar.model';
 import { JuradoModel } from 'src/app/models/parametros/jurado.model';
+import { ResultadoEvaluacionModel } from 'src/app/models/resultadoEvaluacion/resultadoEvaluacion.model';
 import { SolicitudModel } from 'src/app/models/solicitud/solicitud.model';
+import { UploadedFileModel } from 'src/app/models/solicitud/uploaded.file.model';
 import { LocalStorageService } from '../compartido/local-storage.service';
 import { InvitacionEvaluarService } from '../invitacion-evaluar/invitacion-evaluar.service';
 import { JuradoService } from '../parametros/jurado.service';
@@ -81,6 +83,77 @@ export class EvaluarService {
     }
     return solicitudes;
   }
+
+  getEncontarInvitacion(id: number): invitacionEvaluarModel{
+    let invitacion: invitacionEvaluarModel = new invitacionEvaluarModel();
+    let saved = localStorage.getItem("session-data");
+    let correo = "";
+    if (saved) {
+      let data = JSON.parse(saved);
+      correo = data.usuario.correo
+      console.log(correo);
+    }
+    if (correo !== "") {
+      this.juradoService.GetRecordList().subscribe({
+        next: (data: JuradoModel[]) => {
+          let jurado: JuradoModel = new JuradoModel();
+          for (let i = 0; i < data.length; i++) {
+            if (data[i].correo === correo) {
+              jurado = data[i];
+            }
+
+          }
+          console.log(jurado);
+          this.invitacionEvalurService.GetRecordList().subscribe({
+            next: (invitaciones: invitacionEvaluarModel[]) => {
+              for (let i = 0; i < invitaciones.length; i++) {
+                if (invitaciones[i].idJurado === jurado?.id && invitaciones[i].idSolicitud === id) {
+                  invitacion = invitaciones[i]
+                }
+              }
+              return invitacion;
+            }
+
+          })
+
+        }
+
+      })
+
+    }
+    return invitacion;
+  }
+
+  //subir el file
+  UploadFile(formData: FormData): Observable<UploadedFileModel> {
+    return this.http.post<UploadedFileModel>(
+      `${this.url}/CargarDocumentoSolicitud`, //apunta al cargar documento de solicitud
+      formData,
+      {
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${this.token}`
+        })
+      });
+  }
+
+  SaveRecord(data: ResultadoEvaluacionModel): Observable<ResultadoEvaluacionModel> {
+    console.log("TOKEN" + this.token);
+
+    return this.http.post<ResultadoEvaluacionModel>(
+      `${this.url}/solicituds`,
+      {
+        descripcion: data.descripcion,
+        fecha: data.fecha,
+        formatoDiligenciado: data.formatoDiligenciado,
+        idInvitacionEvaluar: data.idInvitacionEvaluar,
+      },
+      {
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${this.token}`
+        })
+      });
+  }
+
   /* 
     GetRecordList(): Observable<SolicitudModel[]> {
       return this.http.get<SolicitudModel[]>(`${this.url}/solicituds${this.filter}`); 
