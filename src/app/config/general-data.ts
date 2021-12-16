@@ -6,6 +6,7 @@ export namespace generalData{
     export const VALID_FORM_MESSAGE = "fORMULARIO OK";
     export const ADMIN_USER_URL = "http://localhost:3002";
     export const BUSSINES_URL = "http://localhost:3000";
+    export const msNotificciones = "http://localhost:5000/correo";
     export const SAVED_MESSAGE = "Registro almacenado";
     export const cambioEstado = "Se cambio el estado de la solitud a aceptado";
     export const rechazarSolicitud = "Se acabo de rechazar la solicitud";

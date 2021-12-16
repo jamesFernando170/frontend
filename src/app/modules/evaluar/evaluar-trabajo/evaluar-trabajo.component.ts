@@ -59,8 +59,11 @@ export class EvaluarTrabajoComponent implements OnInit {
     
     model.descripcion = this.GetForm['descripcion'].value;
     let idSolicitud = parseInt(this.route.snapshot.params["id"]);
+    console.log(idSolicitud);
+    
     let invitacion = this.service.getEncontarInvitacion(idSolicitud);
-
+    console.log(invitacion.hash);
+  
     model.idInvitacionEvaluar = invitacion.id;
 
     this.service.SaveRecord(model).subscribe({

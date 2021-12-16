@@ -67,12 +67,14 @@ export class JuradoService {
   }
 
   RemoveRecord(id: number): Observable<any>{
-    return this.http.delete(
-      `${this.url}/jurados/${id}`,
-      {
+    return this.http.delete(`${this.url}/jurados/${id}`,{
         headers: new HttpHeaders({
           Authorization: `Bearer ${this.token}`
         })
       });
+  }
+
+  obtenerJurado(idJurado?: number): Observable<JuradoModel>{
+    return this.http.get<JuradoModel>(`${this.url}/jurados/${idJurado}`);
   }
 }

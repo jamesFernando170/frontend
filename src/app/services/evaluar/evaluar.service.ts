@@ -85,7 +85,7 @@ export class EvaluarService {
   }
 
   getEncontarInvitacion(id: number): invitacionEvaluarModel{
-    let invitacion: invitacionEvaluarModel = new invitacionEvaluarModel();
+    let invitacion= new invitacionEvaluarModel();
     let saved = localStorage.getItem("session-data");
     let correo = "";
     if (saved) {
@@ -108,9 +108,11 @@ export class EvaluarService {
             next: (invitaciones: invitacionEvaluarModel[]) => {
               for (let i = 0; i < invitaciones.length; i++) {
                 if (invitaciones[i].idJurado === jurado?.id && invitaciones[i].idSolicitud === id) {
-                  invitacion = invitaciones[i]
+                  invitacion = invitaciones[i];
+                  console.log(invitacion);
+                  
                 }
-              }
+              }              
               return invitacion;
             }
 
@@ -121,6 +123,7 @@ export class EvaluarService {
       })
 
     }
+    console.log(invitacion);    
     return invitacion;
   }
 
@@ -137,10 +140,9 @@ export class EvaluarService {
   }
 
   SaveRecord(data: ResultadoEvaluacionModel): Observable<ResultadoEvaluacionModel> {
-    console.log("TOKEN" + this.token);
+    console.log(data.idInvitacionEvaluar);
 
-    return this.http.post<ResultadoEvaluacionModel>(
-      `${this.url}/solicituds`,
+    return this.http.post<ResultadoEvaluacionModel>(`${this.url}/resultado-evaluacions`,
       {
         descripcion: data.descripcion,
         fecha: data.fecha,
