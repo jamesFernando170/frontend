@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col s12">
         <div class="row">
-            <div class="col s12 center">
+            <div class="col s6 center">
                 <img class="defaul-archivo" src="/assets/img/archivos/defaul-archivo.png" />
             </div>
             <div class="row">
@@ -10,6 +10,9 @@
                         (change)="OnchangeInputFile($event)" />
                     &nbsp;<button (click)="UpLoadArchivo()" class="btn">Cargar Archivo</button>
                 </div>
+            </div>
+            <div class="col s12 center">
+                <button (click)="download() " class="btn btn-success">Descargar formato de evaluación</button>
             </div>
         </div>
     </div>
