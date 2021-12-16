@@ -22,6 +22,8 @@ export class InvitacionEvaluarService {
   }
 
   obtenerInvitacionEvaluar(idInvitacion?: number): Observable<invitacionEvaluarModel> {
+    console.log(idInvitacion);
+
     return this.http.get<invitacionEvaluarModel>(`${this.url}/invitacion-evaluars/${idInvitacion}`);
   }
 

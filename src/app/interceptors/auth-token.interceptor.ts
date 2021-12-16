@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import {tap} from 'rxjs/operators';
 import { LocalStorageService } from '../services/compartido/local-storage.service';
 
-@Injectable()
+/* @Injectable()
 export class AuthTokenInterceptor implements HttpInterceptor {
 
   token: string = "";
@@ -39,4 +39,4 @@ export class AuthTokenInterceptor implements HttpInterceptor {
       )
     );
   }
-}
+} */

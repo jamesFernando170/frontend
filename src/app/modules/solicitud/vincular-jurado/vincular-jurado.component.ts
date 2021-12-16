@@ -74,7 +74,7 @@ export class VincularJuradoComponent implements OnInit {
       next: () => {
         for (let i = 0; i < Idjurados.length; i++) {
 
-          /* this.service.obtenerJurado(Idjurados[i]).subscribe({
+          this.service.obtenerJurado(Idjurados[i]).subscribe({
             next: (data: JuradoModel) => {
               
               this.service.obtenerUser(data.correo).subscribe({
@@ -89,7 +89,7 @@ export class VincularJuradoComponent implements OnInit {
                 }
               })
             }
-          }) */
+          })
         }
         console.log("Sirvio Perri");
         this.router.navigate(["/solicitud/listar-solicitud"]);
