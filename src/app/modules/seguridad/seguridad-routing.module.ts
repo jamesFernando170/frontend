@@ -12,6 +12,7 @@ import { CrearRolComponent } from './Rol/crear-rol/crear-rol.component';
 import { EditarRolComponent } from './Rol/editar-rol/editar-rol.component';
 import { EliminarRolComponent } from './Rol/eliminar-rol/eliminar-rol.component';
 import { ListarRolComponent } from './Rol/listar-rol/listar-rol.component';
+import { AuthenticatedGuard } from 'src/app/guards/authenticated.guard';
 
 const routes: Routes = [
   {
@@ -20,11 +21,13 @@ const routes: Routes = [
   },
   {
     path: "logout",
-    component: LogoutComponent
+    component: LogoutComponent,
+    canActivate: [AuthenticatedGuard]
   },
   {
     path: "cambio-clave",
-    component: CambioClaveComponent
+    component: CambioClaveComponent,
+    canActivate: [AuthenticatedGuard]
   },
   {
     path: "recuperar-clave",
@@ -32,44 +35,54 @@ const routes: Routes = [
   },
   {
     path: "crear-usuario", /**Estas direcciones podrian ir en otro modulo, si asi se quiere */
-    component: CrearUsuarioComponent
+    component: CrearUsuarioComponent,
+    canActivate: [AuthenticatedGuard]
   },
   {
     path: "editar-usuario/:id",
-    component: EditarUsuarioComponent
+    component: EditarUsuarioComponent,
+    canActivate: [AuthenticatedGuard]
   },
   {
     path: "listar-usuario/:id",
-    component: ListarUsuarioComponent
+    component: ListarUsuarioComponent,
+    canActivate: [AuthenticatedGuard]
   },
   {
     path: "editar-usuario",
-    component: EditarUsuarioComponent
+    component: EditarUsuarioComponent,
+    canActivate: [AuthenticatedGuard]
   },
   {
     path: "listar-usuario",
-    component: ListarUsuarioComponent
+    component: ListarUsuarioComponent,
+    canActivate: [AuthenticatedGuard]
   },
   {
     path: "eliminar-usuario/:id",
-    component: EliminarUsuarioComponent
+    component: EliminarUsuarioComponent,
+    canActivate: [AuthenticatedGuard]
   },
 // *Rol
   {
     path: "crear-rol", /**Estas direcciones podrian ir en otro modulo, si asi se quiere */
-    component: CrearRolComponent
+    component: CrearRolComponent,
+    canActivate: [AuthenticatedGuard]
   },
   {
     path: "editar-rol/:id",
-    component: EditarRolComponent
+    component: EditarRolComponent,
+    canActivate: [AuthenticatedGuard]
   },
   {
     path: "listar-rol",
-    component: ListarRolComponent
+    component: ListarRolComponent,
+    canActivate: [AuthenticatedGuard]
   },
   {
     path: "eliminar-rol/:id",
-    component: EliminarRolComponent
+    component: EliminarRolComponent,
+    canActivate: [AuthenticatedGuard]
   }
 ];
 

@@ -48,6 +48,7 @@ import { CrearInvitacionEvaluarComponent } from './invitacion-evaluar/crear-invi
 import { EditarInvitacionEvaluarComponent } from './invitacion-evaluar/editar-invitacion-evaluar/editar-invitacion-evaluar.component';
 import { ListarInvitacionEvaluarComponent } from './invitacion-evaluar/listar-invitacion-evaluar/listar-invitacion-evaluar.component';
 import { EliminarInvitacionEvaluarComponent } from './invitacion-evaluar/eliminar-invitacion-evaluar/eliminar-invitacion-evaluar.component';
+import { RecordatorioLlamadaComponent } from './invitacion-evaluar/recordatorio-llamada/recordatorio-llamada.component';
 import { CrearRecordatorioComponent } from './recordatorio/crear-recordatorio/crear-recordatorio.component';
 import { ListarRecordatorioComponent } from './recordatorio/listar-recordatorio/listar-recordatorio.component';
 
@@ -98,6 +99,7 @@ import { ListarRecordatorioComponent } from './recordatorio/listar-recordatorio/
     EditarInvitacionEvaluarComponent,
     ListarInvitacionEvaluarComponent,
     EliminarInvitacionEvaluarComponent,
+    RecordatorioLlamadaComponent,
     CrearRecordatorioComponent,
     ListarRecordatorioComponent
   ],

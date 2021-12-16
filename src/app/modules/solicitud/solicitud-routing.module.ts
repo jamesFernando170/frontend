@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthenticatedGuard } from 'src/app/guards/authenticated.guard';
 import { CrearSolicitudComponent } from './crear-solicitud/crear-solicitud.component';
 import { EditarSolicitudComponent } from './editar-solicitud/editar-solicitud.component';
 import { EliminarSolicitudComponent } from './eliminar-solicitud/eliminar-solicitud.component';
@@ -11,36 +12,44 @@ import { VincularProponenteComponent } from './vincular-proponente/vincular-prop
 const routes: Routes = [
   {
     path: "crear-solicitud",
-    component: CrearSolicitudComponent
+    component: CrearSolicitudComponent,
+    canActivate: [AuthenticatedGuard]
   },
   {
     path: "editar-solicitud",
-    component: EditarSolicitudComponent
+    component: EditarSolicitudComponent,
+    canActivate: [AuthenticatedGuard]
   },
   {
     path: "eliminar-solicitud",
-    component: EliminarSolicitudComponent
+    component: EliminarSolicitudComponent,
+    canActivate: [AuthenticatedGuard]
   },
   {
     path: "editar-solicitud/:id",
-    component: EditarSolicitudComponent
+    component: EditarSolicitudComponent,
+    canActivate: [AuthenticatedGuard]
   },
   {
     path: "eliminar-solicitud/:id",
-    component: EliminarSolicitudComponent
+    component: EliminarSolicitudComponent,
+    canActivate: [AuthenticatedGuard]
   },
   {
     path: "listar-solicitud",
-    component: ListarSolicitudComponent
+    component: ListarSolicitudComponent,
+    canActivate: [AuthenticatedGuard]
   },
   {
     path: "vincular-proponente/:id",
-    component: VincularProponenteComponent
+    component: VincularProponenteComponent,
+    canActivate: [AuthenticatedGuard]
   }
   ,
   {
     path: "vincular-jurado/:id",
-    component: VincularJuradoComponent
+    component: VincularJuradoComponent,
+    canActivate: [AuthenticatedGuard]
   }
   ,
   {

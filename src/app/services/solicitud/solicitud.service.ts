@@ -163,6 +163,19 @@ export class SolicitudService {
     });
   }
 
+  actualizarSolicitud(data: SolicitudModel): Observable<any> {
+    return this.http.patch(`${this.url}/solicituds/${data.id}`, { /* Agregar la funcion en el controlador de varios Tipos comite a solicitud */
+      fecha: data.fecha,
+      nombreTrabajo: data.nombreTrabajo,
+      descripcion: data.descripcion,
+      archivo: data.archivo,
+      idTipoSolicitud: data.idTipoSolicitud,
+      idEstadoSolicitud: data.idEstadoSolicitud,
+      idModalidad: data.idModalidad,
+      idAreaInvestigacion: data.idAreaInvestigacion
+    });
+  }
+
   obtenerJurado(id: number): Observable<JuradoModel> {
     return this.http.get<JuradoModel>(`${this.url}/jurados/${id}`);
   }
@@ -180,5 +193,9 @@ export class SolicitudService {
       apellidos: usuario?.apellidos,
       fecha_nacimiento: usuario?.fecha_nacimiento
     });
+  }
+
+  obtenerSolicitud(id: number): Observable<SolicitudModel>{
+    return this.http.get<SolicitudModel>(`${this.url}/solicituds/${id}`)
   }
 }
